@@ -6,7 +6,7 @@ use GDO\User\GDO_User;
 use GDO\User\GDT_User;
 use GDO\Date\Time;
 use GDO\Core\Application;
-use GDO\DB\GDT_CreatedAt;
+use GDO\Core\GDT_CreatedAt;
 
 /**
  * Record solving attempts to prevent bruteforce.

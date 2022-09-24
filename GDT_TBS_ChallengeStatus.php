@@ -1,7 +1,7 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\DB\GDT_Enum;
+use GDO\Core\GDT_Enum;
 use GDO\UI\GDT_Tooltip;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Link;
@@ -19,7 +19,7 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
     const NEED_FILES = 'need_files';
     const WORKING = 'working';
 
-    public static $COLORS = [
+    public static array $COLORS = [
         self::NOT_CHECKED => '#666', # no auto checker. no exception for auto checker. initial
         self::NOT_TRIED => '#AAA', # auto checker, but no success yet. set automatically for not checked challs after import.
         self::IN_PROGRESS => '#933', # we have to manually work at it. manually assigned
@@ -28,15 +28,9 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
         self::WORKING => '#0F0', # challenge should be working. manually assigned.
     ];
     
-    /**
-     * @var GDT_Tooltip
-     */
-    private $tooltip;
-    
-    /**
-     * @var GDT_Link
-     */
-    private $editLink;
+    private GDT_Tooltip $tooltip;
+
+    private GDT_Link $editLink;
     
     protected function __construct()
     {
@@ -55,21 +49,18 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
         $this->editLink = GDT_Link::make('chall_edit_link');
     }
     
-    /**
-     * @return GDO_TBS_Challenge
-     */
-    public function getChallenge()
+    public function getChallenge() : GDO_TBS_Challenge
     {
         return $this->gdo;
     }
     
-    public function enumLabel($enumValue=null)
+    public function enumLabel(string $enumValue=null) : string
     {
         return $enumValue === null ? t($this->emptyLabel, $this->emptyLabelArgs) : t("tbs_tt_$enumValue");
     }
     
     
-    public function renderCell()
+    public function renderHTML() : string
     {
         # Build status tooltip icon.
         $key = 'tbs_tt_'.$this->getVar();

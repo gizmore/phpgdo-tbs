@@ -10,23 +10,24 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 use GDO\Date\GDT_Duration;
-use GDO\DB\GDT_UInt;
-use GDO\DB\GDT_Checkbox;
+use GDO\Core\GDT_UInt;
+use GDO\Core\GDT_Checkbox;
 use GDO\Net\GDT_Url;
 use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Container;
 use GDO\DB\Query;
-use GDO\Vote\Module_Vote;
+use GDO\Votes\Module_Votes;
 use GDO\Core\GDT_Secret;
 use GDO\Core\GDT_Array;
 use GDO\Core\Application;
 use GDO\Core\Method;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT_Response;
-use GDO\Core\Website;
+use GDO\User\GDT_ACLRelation;
+use GDO\Core\CSS;
 
 /**
- * TBS website revival as gdo6 module.
+ * TBS website revival as gdo module.
  * 
  * - Read the Import instructions
  * - Solution to crypto1 is ahdefjuklgrbdsegf
@@ -35,21 +36,22 @@ use GDO\Core\Website;
  * 
  * @author gizmore
  * @license Property of Erik and TBS
+ * @version 7.0.1
  */
 final class Module_TBS extends GDO_Module
 {
-    public $module_priority = 110;
-    public $module_license = 'Properitary';
+    public int    $priority = 110;
+    public string $license = '(c) Erik & TBS';
     
-    public function isSiteModule() { return true; }
-    public function getTheme() { return 'tbs'; }
-    public function onLoadLanguage() { return $this->loadLanguage('lang/tbs'); }
-    public function href_administrate_module() { return href('TBS', 'Admin'); }
+    public function isSiteModule() : bool { return true; }
+    public function getTheme() : ?string { return 'tbs'; }
+    public function onLoadLanguage() : void { $this->loadLanguage('lang/tbs'); }
+    public function href_administrate_module() : string { return href('TBS', 'Admin'); }
     
     ##############
     ### Module ###
     ##############
-    public function getDependencies()
+    public function getDependencies() : array
     {
         return [
             'Country', 'Language', 'Contact',
@@ -64,7 +66,7 @@ final class Module_TBS extends GDO_Module
         ];
     }
     
-    public function getClasses()
+    public function getClasses() : array
     {
         return [
             GDO_TBS_Challenge::class,
@@ -77,7 +79,7 @@ final class Module_TBS extends GDO_Module
     ##############
     ### Config ###
     ##############
-    public function getConfig()
+    public function getConfig() : array
     {
         return [
             GDT_Duration::make('chall_solve_timeout')->initial('5m'),
@@ -93,15 +95,22 @@ final class Module_TBS extends GDO_Module
     public function cfgSolvePass() { return $this->getConfigVar('chall_solver_pass'); }
     public function cfgXAuthKey() { return $this->getConfigVar('tbs_xauth_key'); }
     
-    public function getUserSettings()
+    public function getACLDefaults() : ?array
+    {
+    	return [
+    		'tbs_website' => [GDT_ACLRelation::ALL, 0, null],
+    	];
+    }
+    
+    public function getUserSettings() : array
     {
         return [
-            GDT_Checkbox::make('tbs_ranked')->initial('1')->notNull(),
+            GDT_Checkbox::make('tbs_ranked')->initial('1')->notNull()->noacl(),
             GDT_Url::make('tbs_website')->allowLocal(false)->allowExternal()->reachable(),
         ];
     }
     
-    public function tutorialWWWPath()
+    public function tutorialWWWPath() : string
     {
         return $this->wwwPath('tutorials/');
     }
@@ -109,12 +118,12 @@ final class Module_TBS extends GDO_Module
     ############
     ### Init ###
     ############
-    public function onInstall()
+    public function onInstall() : void
     {
         InstallTBS::onInstall();
     }
     
-    public function onIncludeScripts()
+    public function onIncludeScripts() : void
     {
         if (Application::instance()->hasTheme('tbs'))
         {
@@ -129,9 +138,8 @@ final class Module_TBS extends GDO_Module
     ##############
     /**
      * Get TBS Admin Section tabs.
-     * @return \GDO\UI\GDT_Bar
      */
-    public function barAdminTabs()
+    public function barAdminTabs() : GDT_Bar
     {
         $tabs = GDT_Bar::make()->horizontal();
         
@@ -170,7 +178,7 @@ final class Module_TBS extends GDO_Module
     public function hookDecoratePostUser(GDT_Card $card, GDT_Container $cont, GDO_User $user)
     {
         # Add likes
-        $likes = Module_Vote::instance()->userSettingVar($user, 'likes');
+        $likes = Module_Votes::instance()->userSettingVar($user, 'likes');
         $cont->addField(GDT_UInt::make()->initial($likes)->label('btn_likes'));
         
         # Add groupmaster icons
@@ -251,7 +259,7 @@ final class Module_TBS extends GDO_Module
           text-align: justify;
         }
         END;
-        Website::addInlineCSS($css);
+        CSS::addInline($css);
     }
     
     public function hookAfterExecute(Method $method, GDT_Response $response)

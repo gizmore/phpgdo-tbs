@@ -94,7 +94,7 @@ final class GDT_TBS_GroupmasterIcon extends GDT
             $path = "groupmasters/{$catID}_sad.gif";
         }
         
-        $title = t($titlekey, [$user->displayNameLabel(), $perc, $this->category]);
+        $title = t($titlekey, [$user->renderUserName(), $perc, $this->category]);
         
         return $module->rawIcon($path, $title);
     }

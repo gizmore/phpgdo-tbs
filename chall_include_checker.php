@@ -4,7 +4,7 @@ use GDO\Session\GDO_Session;
 use GDO\TBS\GDO_TBS_Challenge;
 use GDO\Util\Strings;
 use GDO\Core\Debug;
-use GDO\Core\GDOError;
+use GDO\Core\GDO_Error;
 use GDO\Core\Logger;
 use GDO\Core\ModuleLoader;
 use GDO\DB\Database;
@@ -39,7 +39,7 @@ if ( ($solution = @$_REQUEST['solution']) && (@$_REQUEST['button_submit']) )
     $challenge = GDO_TBS_Challenge::getByURL($url);
     if (!$challenge)
     {
-        throw new GDOError('err_tbs_challenge');
+        throw new GDO_Error('err_tbs_challenge');
     }
     
     $challenge->onSolve($solution);

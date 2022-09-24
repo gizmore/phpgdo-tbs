@@ -8,7 +8,7 @@ use GDO\Core\Logger;
 use GDO\Core\ModuleLoader;
 use GDO\Core\Application;
 use GDO\User\GDO_User;
-use GDO\Core\GDT_Error;
+use GDO\UI\GDT_Error;
 use GDO\Core\Website;
 
 require "GDO6.php";

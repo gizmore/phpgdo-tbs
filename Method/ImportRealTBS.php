@@ -2,7 +2,7 @@
 namespace GDO\TBS\Method;
 
 use GDO\Core\Application;
-use GDO\Core\MethodAdmin;
+use GDO\Admin\MethodAdmin;
 use GDO\TBS\Module_TBS;
 use GDO\TBS\Install\ImportTBS;
 use GDO\UI\GDT_Page;
@@ -10,7 +10,7 @@ use GDO\Form\GDT_Form;
 use GDO\Form\MethodForm;
 use GDO\Form\GDT_Submit;
 use GDO\Form\GDT_AntiCSRF;
-use GDO\DB\GDT_Checkbox;
+use GDO\Core\GDT_Checkbox;
 use GDO\DB\Database;
 
 /**

@@ -2,24 +2,24 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
-use GDO\DB\GDT_AutoInc;
+use GDO\Core\GDT_AutoInc;
 use GDO\User\GDT_Level;
-use GDO\DB\GDT_CreatedBy;
-use GDO\DB\GDT_CreatedAt;
-use GDO\DB\GDT_DeletedBy;
-use GDO\DB\GDT_DeletedAt;
+use GDO\Core\GDT_CreatedBy;
+use GDO\Core\GDT_CreatedAt;
+use GDO\Core\GDT_DeletedBy;
+use GDO\Core\GDT_DeletedAt;
 use GDO\UI\GDT_Title;
-use GDO\DB\GDT_Virtual;
-use GDO\DB\GDT_Decimal;
-use GDO\DB\GDT_UInt;
+use GDO\Core\GDT_Virtual;
+use GDO\Core\GDT_Decimal;
+use GDO\Core\GDT_UInt;
 use GDO\User\GDO_User;
 use GDO\Net\GDT_Url;
 use GDO\Forum\GDT_ForumBoard;
 use GDO\User\GDO_Permission;
 use GDO\User\GDT_Permission;
-use GDO\User\GDT_Password;
+use GDO\Crypto\GDT_Password;
 use GDO\Net\URL;
-use GDO\DB\GDT_Index;
+use GDO\Core\GDT_Index;
 use GDO\DB\Cache;
 
 /**
@@ -67,11 +67,11 @@ final class GDO_TBS_Challenge extends GDO
     }
     
     public function getTitle() { return $this->getVar('chall_title'); }
-    public function displayTitle() { return $this->display('chall_title'); }
+    public function displayTitle() { return $this->gdoDisplay('chall_title'); }
     public function getQuestionBoardID() { return $this->getVar('chall_questions'); }
     public function getSolutionBoardID() { return $this->getVar('chall_solutions'); }
     public function getCategory() { return $this->getVar('chall_category'); }
-    public function displayCategory() { return $this->display('chall_category'); }
+    public function displayCategory() { return $this->gdoDisplay('chall_category'); }
     public function getStatus() { return $this->getVar('chall_status'); }
     
     /**

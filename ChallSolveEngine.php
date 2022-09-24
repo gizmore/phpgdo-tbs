@@ -1,12 +1,12 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\Core\GDT_Error;
-use GDO\Core\GDT_Success;
+use GDO\UI\GDT_Error;
+use GDO\UI\GDT_Success;
 use GDO\User\GDO_User;
-use GDO\Util\Process;
+use GDO\CLI\Process;
 use GDO\Util\Strings;
-use GDO\Python\Module_Python;
+use GDO\Python\Module_Python; 
 use GDO\TBS\Method\Ranking;
 
 /**
@@ -32,7 +32,7 @@ final class ChallSolveEngine
             return;
         }
         
-        /** @var $bcrypt \GDO\Util\BCrypt **/
+        /** @var $bcrypt \GDO\Crypto\BCrypt **/
         $bcrypt = $this->challenge->getValue('chall_solution');
         if ($bcrypt === null)
         {

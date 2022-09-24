@@ -2,9 +2,14 @@
 namespace GDO\TBS;
 
 use GDO\User\GDO_User;
-use GDO\DB\GDT_Virtual;
+use GDO\Core\GDT_Virtual;
 use GDO\UI\GDT_Label;
 
+/**
+ * 
+ * @author gizmore
+ *
+ */
 final class GDT_TBS_ChallengeSolved extends GDT_Virtual
 {
     protected function __construct()
@@ -23,15 +28,12 @@ final class GDT_TBS_ChallengeSolved extends GDT_Virtual
         return $this->subquery("SELECT 1 FROM gdo_tbs_challengesolved cs WHERE cs_challenge=gdo_tbs_challenge.chall_id AND cs_user={$this->user->getID()}");
     }
     
-    /**
-     * @return GDO_TBS_Challenge
-     */
-    public function getChallenge()
+    public function getChallenge() : GDO_TBS_Challenge
     {
         return $this->gdo;
     }
     
-    public function renderCell()
+    public function renderHTML() : string
     {
         if ($this->gdo->getVar($this->name))
         {

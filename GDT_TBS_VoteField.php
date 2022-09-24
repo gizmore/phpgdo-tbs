@@ -1,7 +1,7 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\DB\GDT_Decimal;
+use GDO\Core\GDT_Decimal;
 
 /**
  * Votes between 0.0 and 10.0.

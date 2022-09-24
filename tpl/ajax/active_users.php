@@ -1,5 +1,5 @@
 <?php
-use GDO\Profile\GDT_ProfileLink;
+use GDO\User\GDT_ProfileLink;
 use GDO\TBS\Method\Heartbeat;
 use GDO\User\GDO_User;
 
@@ -18,7 +18,7 @@ foreach ($users as $user)
     }
     else
     {
-        $profileLink = GDT_ProfileLink::make()->withNickname()->forUser($user);
+        $profileLink = GDT_ProfileLink::make()->nickname()->user($user);
         $onlineUsers .= sprintf("<div>%s<span>%s</span></div>\n",
             $profileLink->renderCell(), $user->getVar('user_level'));
     }

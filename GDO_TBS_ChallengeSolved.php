@@ -2,7 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
-use GDO\Profile\GDT_User;
+use GDO\User\GDT_User;
 use GDO\Date\GDT_DateTime;
 use GDO\User\GDO_User;
 use GDO\Date\Time;

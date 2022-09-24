@@ -1,22 +1,20 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\DB\GDT_String;
-use GDO\Profile\GDT_ProfileLink;
+use GDO\Core\GDT_String;
+use GDO\User\GDT_ProfileLink;
 
 /**
  * A challenge title.
  * A string with challenge creator link.
+ * 
  * @author gizmore
  */
 final class GDT_TBS_ChallTitle extends GDT_String
 {
-    public function defaultLabel() { return $this->label('name'); }
+    public function defaultLabel() : void { $this->label('name'); }
     
-    /**
-     * @var GDT_ProfileLink
-     */
-    private $creator;
+    private GDT_ProfileLink $creator;
     
     protected function __construct()
     {
@@ -24,11 +22,7 @@ final class GDT_TBS_ChallTitle extends GDT_String
         $this->creator = GDT_ProfileLink::make()->withNickname();
     }
     
-    
-    /**
-     * @return GDO_TBS_Challenge
-     */
-    private function getChallenge() 
+    private function getChallenge() : GDO_TBS_Challenge
     {
         return $this->gdo;
     }
@@ -45,7 +39,7 @@ final class GDT_TBS_ChallTitle extends GDT_String
         }
         else
         {
-            $creator = $this->creator->forUser($creator)->renderCell();
+            $creator = $this->creator->user($creator)->render();
             $creator = sprintf(' <span>(made by %s)</span>', $creator);
         }
         

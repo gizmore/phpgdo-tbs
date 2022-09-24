@@ -2,10 +2,10 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
-use GDO\Profile\GDT_User;
-use GDO\DB\GDT_UInt;
+use GDO\User\GDT_User;
+use GDO\Core\GDT_UInt;
 use GDO\User\GDO_User;
-use GDO\DB\GDT_Decimal;
+use GDO\Core\GDT_Decimal;
 use GDO\DB\Query;
 
 /**

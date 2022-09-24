@@ -16,7 +16,7 @@ use GDO\OnlineUsers\GDT_OnlineUsers;
  * Chall counter.
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 7.0.1
  * @since 6.10.0
  */
 final class GDT_TBS_TopBar extends GDT

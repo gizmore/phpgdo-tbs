@@ -1,7 +1,7 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\DB\GDT_UInt;
+use GDO\Core\GDT_UInt;
 use GDO\User\GDO_User;
 use GDO\Core\GDO;
 

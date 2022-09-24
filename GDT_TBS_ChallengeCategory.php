@@ -1,7 +1,7 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\DB\GDT_Enum;
+use GDO\Core\GDT_Enum;
 
 /**
  * A challenge category implemented as enum.

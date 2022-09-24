@@ -7,7 +7,7 @@ use GDO\Country\GDT_Country;
 use GDO\User\GDT_Level;
 use GDO\TBS\GDT_TBS_GroupmasterIcon;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
-use GDO\Profile\GDT_ProfileLink;
+use GDO\User\GDT_ProfileLink;
 use GDO\TBS\GDO_TBS_ChallengeSolvedCategory;
 use GDO\User\GDO_User;
 

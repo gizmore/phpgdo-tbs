@@ -4,12 +4,12 @@ Revival of the
 [bright-shadows.net](http://bright-shadows.net/index2.php)
 website as a GDOv7 module.
 
-Currently this site is available under http://tbs.wechall.net
+Currently this site is available under 
+[tbs.wechall.net](https://tbs.wechall.net)
     
-Please note that this site is a phpgdo demo site with custom theme.
-Some of the unit tests are advised to be run in a complete gdo test-suite.
-If you want to contribute, please try to install this gdo driven site on your dev machine.
-Also, phpgdo is rather new, so there are plenty of bugs lurking.
+Please note that it is a phpgdo demo site with a custom theme.
+Some of the unit tests should be run on a complete gdo test suite.
+If you want to contribute, please try to install this  site on your dev machine.
 
 
 ## phpgdo-tbs: Install
