@@ -19,7 +19,7 @@ final class GDT_TBS_ChallTitle extends GDT_String
     protected function __construct()
     {
         parent::__construct();
-        $this->creator = GDT_ProfileLink::make()->withNickname();
+        $this->creator = GDT_ProfileLink::make()->nickname();
     }
     
     private function getChallenge() : GDO_TBS_Challenge
@@ -27,7 +27,7 @@ final class GDT_TBS_ChallTitle extends GDT_String
         return $this->gdo;
     }
     
-    public function renderCell()
+    public function renderCell() : string
     {
         $chall = $this->getChallenge();
         

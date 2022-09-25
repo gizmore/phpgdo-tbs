@@ -264,9 +264,11 @@ final class ImportTBS
     
     public function importUsers()
     {
-        $path = $this->getImportPath('users.csv');
+    	$usr = Module_User::instance();
+    	$reg = Module_Register::instance();
+    	$path = $this->getImportPath('users.csv');
         $csv = new CSV($path);
-        $csv->eachLine(function($row) {
+        $csv->eachLine(function($row) use($reg) {
             
             $username = $row[self::CSV_USER_USERNAME];
             $u = GDO_User::table()->getBy('user_name', $username);
@@ -278,8 +280,6 @@ final class ImportTBS
                     'user_email' => $this->convertEmail($row[self::CSV_USER_EMAIL]),
                     'user_level' => $row[self::CSV_USER_SOLVED],
                     'user_country' => $this->convertCountryID($row[self::CSV_USER_COUNTRY]),
-                    'user_last_activity' => $this->convertDate($row[self::CSV_USER_LASTACTIVITY]),
-                    'user_register_time' => $this->convertDate($row[self::CSV_USER_REGDATE]),
                 ])->insert();
                 
                 if ($row[self::CSV_USER_WEBSITE])
@@ -291,7 +291,13 @@ final class ImportTBS
                 {
                     Module_TBS::instance()->saveUserSetting($u, 'tbs_ranked', '0');
                 }
-                    
+             
+                $regdate = $this->convertDate($row[self::CSV_USER_REGDATE]);
+                $reg->saveUserSetting($u, 'register_date', $regdate);
+                
+                $activity = $this->convertDate($row[self::CSV_USER_LASTACTIVITY]);
+                $usr->saveUserSetting($u, 'last_activity', $activity);
+                
             }
         });
     }

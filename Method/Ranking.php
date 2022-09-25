@@ -27,9 +27,7 @@ final class Ranking extends MethodQueryTable
     public function getDefaultIPP() : int { return 100; }
     public function fetchAs() { return GDO_User::table(); }
     
-//     public function getTitleLangKey() { return 'table_tbs_ranking'; }
-    
-    public function getTitle()
+    public function getMethodTitle() : string
     {
         return t('mtitle_tbs_ranking');
     }
@@ -49,14 +47,14 @@ final class Ranking extends MethodQueryTable
     
     public function gdoHeaders() : array
     {
-        $o = $this->table->headers->name;
-        $page = $this->table->headers->getField('page')->getRequestVar($o, 1);
-        $ipp = $this->table->headers->getField('ipp')->getRequestVar($o, 100);
-        $from = $this->table->pagemenu->getFromS($page, $ipp);
+//         $o = $this->table->headers->name;
+//         $page = $this->table->headers->getField('page')->getRequestVar($o, 1);
+//         $ipp = $this->table->headers->getField('ipp')->getRequestVar($o, 100);
+//         $from = $this->table->pagemenu->getFromS($page, $ipp);
         return [
-            GDT_TBS_Rank::make('rank')->startRank($from+1),
-            GDT_Country::make('user_country')->noLabel()->withName(false),
-            GDT_ProfileLink::make('username')->withNickname(),
+            GDT_TBS_Rank::make('rank')->startRank(1),
+            GDT_Country::make('user_country')->labelNone()->withName(false),
+            GDT_ProfileLink::make('username')->nickname(),
             GDT_Level::make('user_level')->label('solved'),
             $this->groupmasterIcon(0),
             $this->groupmasterIcon(1),

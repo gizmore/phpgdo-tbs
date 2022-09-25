@@ -21,7 +21,7 @@ use GDO\OnlineUsers\GDT_OnlineUsers;
  */
 final class GDT_TBS_TopBar extends GDT
 {
-    public function renderCell()
+    public function renderCell() : string
     {
         $mo = Module_TBS::instance();
 

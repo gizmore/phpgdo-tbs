@@ -10,6 +10,7 @@ use GDO\Captcha\GDT_Captcha;
 use GDO\Form\GDT_Submit;
 use GDO\User\GDO_User;
 use GDO\User\GDT_User;
+use GDO\User\GDT_UserType;
 use GDO\Util\Common;
 use GDO\TBS\Module_TBS;
 use GDO\Recovery\GDO_UserRecovery;
@@ -34,7 +35,7 @@ final class Migrate extends MethodForm
 {
     public function isUserRequired() : bool { return false; }
     
-    public function getUserType() : ?string { return GDO_User::GHOST; }
+    public function getUserType() : ?string { return GDT_UserType::GHOST; }
     
     public function getTitleLangKey() { return 'tbs_account_migration_title'; }
     
@@ -52,19 +53,19 @@ final class Migrate extends MethodForm
     
     public function createForm(GDT_Form $form) : void
     {
-        $form->info(t('tbs_migration_info'));
-        $form->addFields([
-            GDT_User::make('tbs_user')->notNull()->label('tbs_username'),
+        $form->text('tbs_migration_info');
+        $tu = GDT_User::make('tbs_user')->notNull()->label('tbs_username');
+        $form->addFields(
+        	$tu,
             GDT_Email::make('wechall_mail')->notNull()->label('wechall_email'),
             GDT_Username::make('wechall_name')->notNull()->label('wechall_username'),
-            GDT_Validator::make()->validator('tbs_user', [$this, 'validateAlreadyActive']),
+            GDT_Validator::make()->validator($form, $tu, [$this, 'validateAlreadyActive']),
             GDT_AntiCSRF::make(),
-        ]);
+        );
         if (module_enabled('Captcha'))
         {
             $form->addField(GDT_Captcha::make());
         }
-        
         $form->actions()->addField(GDT_Submit::make());
     }
     

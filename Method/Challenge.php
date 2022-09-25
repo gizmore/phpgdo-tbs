@@ -38,7 +38,7 @@ final class Challenge extends Method
             'challenge' => $challenge]);
     }
     
-    public function getTitle()
+    public function getMethodTitle() : string
     {
         $challenge = $this->getChallenge();
         return t('title_challenge', [

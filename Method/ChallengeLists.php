@@ -15,7 +15,7 @@ final class ChallengeLists extends Method
 {
     public function isGuestAllowed() : bool { return false; }
     
-    public function getTitle() { return t('link_tbs_challenges'); }
+    public function getMethodTitle() : string { return t('link_tbs_challenges'); }
     
     public function gdoParameters() : array
     {
@@ -31,8 +31,7 @@ final class ChallengeLists extends Method
         foreach (GDT_TBS_ChallengeCategory::$CATS as $category)
         {
             $list = ChallengeList::make();
-            $_REQUEST['category'] = $category;
-            $response->addField($list->executeWithInit());
+            $response->addField($list->executeWithInputs(['category' => $category]));
         }
         
         return $response;

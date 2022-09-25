@@ -5,7 +5,7 @@ use GDO\UI\MethodPage;
 
 final class Tutorials extends MethodPage
 {
-    public function getTitle()
+    public function getMethodTitle() : string
     {
         return t('tbs_tutorials');
     }

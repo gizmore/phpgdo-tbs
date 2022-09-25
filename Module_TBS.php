@@ -24,6 +24,7 @@ use GDO\Core\GDT_Template;
 use GDO\Core\GDT_Response;
 use GDO\User\GDT_ACLRelation;
 use GDO\Core\CSS;
+use GDO\Core\Application;
 
 /**
  * TBS website revival as gdo module.
@@ -153,6 +154,11 @@ final class Module_TBS extends GDO_Module
 				0,
 				null
 			],
+			'tbs_category' => [
+				GDT_ACLRelation::ALL,
+				0,
+				null
+			],
 		];
 	}
 
@@ -163,6 +169,7 @@ final class Module_TBS extends GDO_Module
 				->notNull()
 				->noacl(),
 			GDT_Url::make('tbs_website')->allowExternal(),
+			GDT_TBS_ChallengeCategory::make('tbs_category'),
 		];
 	}
 
@@ -181,9 +188,12 @@ final class Module_TBS extends GDO_Module
 
 	public function onIncludeScripts(): void
 	{
-		$this->addJS('js/tbs.js');
-		$this->addCSS('css/gdo7-tbs.css');
-		// Module_Classic::instance()->addJS('js/gdo6-classic.js');
+		if (Application::$INSTANCE->hasTheme('tbs'))
+		{
+			$this->addJS('js/tbs.js');
+			$this->addCSS('css/gdo7-tbs.css');
+			Module_Classic::instance()->addJS('js/gdo7-classic.js');
+		}
 	}
 
 	# #############

@@ -58,8 +58,8 @@ final class ChallengeList extends MethodTable
             $challs->gdoColumn('chall_education'),
             $challs->gdoColumn('chall_presentation'),
             $challs->gdoColumn('chall_solver_count'),
-            GDT_Button::make('chall_questions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_questions.gif')),
-            GDT_Button::make('chall_solutions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_solutions.gif')),
+            GDT_Button::make('chall_questions')->labelNone()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_questions.gif')),
+            GDT_Button::make('chall_solutions')->labelNone()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_solutions.gif')),
             $challs->gdoColumn('chall_solved')->user($this->getUser()),
         ];
     }

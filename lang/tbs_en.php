@@ -186,4 +186,5 @@ Bye, TheBlacksheep and Erik :-)",
     'err_tbs_migrate_token' => 'Your migration token is invalid.',
     'msg_tbs_migrate_recovery' => 'You may now choose a password on tbs.wechall.net!',
     'err_tbs_migrate_not_needed' => 'This account is already migrated and should work. If you need to change your password, try the recovery function.',
+	'tbs_category' => 'Favorite Category',
 ];

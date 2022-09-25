@@ -64,7 +64,7 @@ final class GDT_TBS_GroupmasterIcon extends GDT
         return $this;
     }
     
-    public function renderCard()
+    public function renderCard() : string
     {
         return $this->renderCell();
     }
@@ -73,7 +73,7 @@ final class GDT_TBS_GroupmasterIcon extends GDT
      * Render category badge.
      * @TODO The formula is wrong. On original TBS the badges are given differently.
      */
-    public function renderCell()
+    public function renderCell() : string
     {
         $user = $this->getUser();
         $module = Module_TBS::instance();
