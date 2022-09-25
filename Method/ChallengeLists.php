@@ -13,11 +13,11 @@ use GDO\TBS\GDT_TBS_ChallengeCategory;
  */
 final class ChallengeLists extends Method
 {
-    public function isGuestAllowed() { return false; }
+    public function isGuestAllowed() : bool { return false; }
     
     public function getTitle() { return t('link_tbs_challenges'); }
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return [
             GDT_User::make('user')->fallbackCurrentUser(),

@@ -32,9 +32,9 @@ use GDO\Core\GDT;
  */
 final class Migrate extends MethodForm
 {
-    public function isUserRequired() { return false; }
+    public function isUserRequired() : bool { return false; }
     
-    public function getUserType() { return GDO_User::GHOST; }
+    public function getUserType() : ?string { return GDO_User::GHOST; }
     
     public function getTitleLangKey() { return 'tbs_account_migration_title'; }
     
@@ -50,7 +50,7 @@ final class Migrate extends MethodForm
         return parent::execute();
     }
     
-    public function createForm(GDT_Form $form)
+    public function createForm(GDT_Form $form) : void
     {
         $form->info(t('tbs_migration_info'));
         $form->addFields([

@@ -14,7 +14,7 @@ final class RecalcPoints extends MethodForm
 {
     use MethodAdmin;
     
-    public function isTransactional() { return false; }
+    public function isTransactional() : bool { return false; }
     
     public function onRenderTabs() : void 
     {
@@ -24,7 +24,7 @@ final class RecalcPoints extends MethodForm
 		);
     }
     
-    public function createForm(GDT_Form $form)
+    public function createForm(GDT_Form $form) : void
     {
         $form->info(t('tbs_reacalc_points_info'));
         $form->addFields([

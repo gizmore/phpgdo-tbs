@@ -14,9 +14,9 @@ use GDO\TBS\GDO_TBS_Challenge;
  */
 final class Challenge extends Method
 {
-    public function isGuestAllowed() { return false; }
+    public function isGuestAllowed() : bool { return false; }
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return [
             GDT_TBS_Challenge::make('challenge')->notNull(),

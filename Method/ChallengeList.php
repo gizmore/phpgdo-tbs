@@ -1,6 +1,7 @@
 <?php
 namespace GDO\TBS\Method;
 
+use GDO\Core\GDO;
 use GDO\TBS\GDO_TBS_Challenge;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
 use GDO\User\GDT_User;
@@ -11,6 +12,7 @@ use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\TBS\GDT_TBS_GroupmasterIcon;
+use GDO\DB\ArrayResult;
 
 /**
  * List all challenges for a category and user.
@@ -19,15 +21,15 @@ use GDO\TBS\GDT_TBS_GroupmasterIcon;
  */
 final class ChallengeList extends MethodTable
 {
-    public function gdoTable() { return GDO_TBS_Challenge::table(); }
+    public function gdoTable() : GDO { return GDO_TBS_Challenge::table(); }
 
     public function isPaginated() { return false; }
     public function isFiltered() { return false; }
-    public function isGuestAllowed() { return false; }
+    public function isGuestAllowed() : bool { return false; }
     
-    public function getDefaultOrder() { return 'chall_order'; }
+    public function getDefaultOrder() : ?string { return 'chall_order'; }
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return [
             GDT_User::make('user')->fallbackCurrentUser(),
@@ -43,7 +45,7 @@ final class ChallengeList extends MethodTable
         return $this->gdoParameterValue('user');
     }
     
-    public function gdoHeaders()
+    public function gdoHeaders() : array
     {
         $challs = GDO_TBS_Challenge::table();
         return [
@@ -67,13 +69,13 @@ final class ChallengeList extends MethodTable
         return $this->gdoParameterVar('category');
     }
     
-    public function getResult()
+    public function getResult() : ArrayResult
     {
         $cat = $this->getCategory();
         $all = GDO_TBS_Challenge::table()->allCached('chall_order');
         $all = array_filter($all, function(GDO_TBS_Challenge $chall) use ($cat) {
             return $chall->getCategory() === $cat; });
-        return new \GDO\DB\ArrayResult($all, GDO_TBS_Challenge::table());
+        return new ArrayResult($all, GDO_TBS_Challenge::table());
     }
     
     public function setupTitle(GDT_Table $table)

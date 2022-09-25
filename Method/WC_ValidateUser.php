@@ -14,7 +14,7 @@ use GDO\Mail\GDT_Email;
  */
 final class WC_ValidateUser extends MethodAjax
 {
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return [
             GDT_User::make('user')->notNull(),

@@ -1,8 +1,10 @@
 <?php
 namespace GDO\TBS\Method;
 
+use GDO\Core\GDO;
 use GDO\Table\MethodQueryTable;
 use GDO\TBS\GDO_TBS_Challenge;
+use GDO\DB\Query;
 
 /**
  * Show recently added challenges.
@@ -10,14 +12,14 @@ use GDO\TBS\GDO_TBS_Challenge;
  */
 final class RecentAdditions extends MethodQueryTable
 {
-    public function gdoTable()
+    public function gdoTable() : GDO
     {
         return GDO_TBS_Challenge::table();
     }
     
-    public function getQuery()
+    public function getQuery() : Query
     {
-        return parent::getQuery()->order('chall_created', false)->limit(10);
+        return parent::getQuery()->order('chall_created DESC')->limit(10);
     }
     
 }

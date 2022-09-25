@@ -4,7 +4,6 @@ namespace GDO\TBS\Method;
 use GDO\Core\Application;
 use GDO\Admin\MethodAdmin;
 use GDO\TBS\Module_TBS;
-use GDO\TBS\Install\ImportTBS;
 use GDO\UI\GDT_Page;
 use GDO\Form\GDT_Form;
 use GDO\Form\MethodForm;
@@ -24,7 +23,7 @@ final class ImportRealTBS extends MethodForm
 {
     use MethodAdmin;
     
-    public function isTransactional() { return false; }
+    public function isTransactional() : bool { return false; }
     
     /**
      * Before execute we add the top tabs.
@@ -47,7 +46,7 @@ final class ImportRealTBS extends MethodForm
         return parent::execute();
     }
     
-    public function createForm(GDT_Form $form)
+    public function createForm(GDT_Form $form) : void
     {
         $form->info(t('tbs_import_info'));
         $form->addFields([

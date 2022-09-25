@@ -41,7 +41,7 @@ use GDO\Core\CSS;
 final class Module_TBS extends GDO_Module
 {
     public int    $priority = 110;
-    public string $license = '(c) Erik & TBS';
+    public string $license = 'TBS';
     
     public function isSiteModule() : bool { return true; }
     public function getTheme() : ?string { return 'tbs'; }
@@ -54,15 +54,13 @@ final class Module_TBS extends GDO_Module
     public function getDependencies() : array
     {
         return [
-            'Country', 'Language', 'Contact',
+        	'Country', 'Contact', 'OnlineUsers', 'PM',
             'Classic', 'Forum', 'News', 'Mibbit',
-            'OnlineUsers', 'Profile', 'PM',
             'Login', 'Register', 'Recovery', 'Admin',
             'Favicon', 'FontAwesome', 'Captcha',
-            'JQuery', 'JQueryAutocomplete',
-            'TBSBBMessage', 'LoadOnClick',
+            'JQuery', 'JQueryAutocomplete', 'Markdown',
             'Perf', 'Statistics', 'Python',
-            'Forum', 'LoginAs', 'File',
+            'Forum', 'File',
         ];
     }
     
@@ -106,7 +104,7 @@ final class Module_TBS extends GDO_Module
     {
         return [
             GDT_Checkbox::make('tbs_ranked')->initial('1')->notNull()->noacl(),
-            GDT_Url::make('tbs_website')->allowLocal(false)->allowExternal()->reachable(),
+            GDT_Url::make('tbs_website')->allowExternal(),
         ];
     }
     
@@ -125,12 +123,12 @@ final class Module_TBS extends GDO_Module
     
     public function onIncludeScripts() : void
     {
-        if (Application::instance()->hasTheme('tbs'))
-        {
+//         if (Application::instance()->hasTheme('tbs'))
+//         {
             $this->addJS('js/tbs.js');
             $this->addCSS('css/gdo6-tbs.css');
             Module_Classic::instance()->addJS('js/gdo6-classic.js');
-        }
+//         }
     }
 
     ##############

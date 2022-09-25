@@ -14,14 +14,16 @@ use GDO\Core\MethodCompletion;
 final class ChallengeCompletion extends MethodCompletion
 {
 
-	protected function gdoTable()
+	protected function gdoTable() : GDO
 	{
 		return GDO_TBS_Challenge::table();
 	}
 
-	protected function gdoHeaderFields()
+	protected function gdoHeaderFields() : array
 	{
-		return GDO_TBS_Challenge::table()->gdoColumnsExcept('chall_deleted', 'chall_deletor', 'chall_solution',);
+		return GDO_TBS_Challenge::table()->gdoColumnsExcept(
+			'chall_deleted', 'chall_deletor', 'chall_solution',
+			);
 	}
 
 	public function itemToCompletionJSON(GDO $gdo) : array

@@ -42,7 +42,7 @@ final class InstallTBS
         
         # On install disable forum email.
         Module_Forum::instance()->saveConfigVar('forum_mail_enable', '0');
-        Module_Forum::instance()->saveConfigVar('forum_hook_left_bar', '0');
+        Module_Forum::instance()->saveConfigVar('hook_sidebar', '0');
 
         # IRC
         Module_Mibbit::instance()->saveConfigVar('mibbit_host', 'irc.wechall.net');
@@ -51,7 +51,7 @@ final class InstallTBS
         Module_Mibbit::instance()->saveConfigVar('mibbit_channel', '#tbs');
         
         # Register
-        Module_Register::instance()->saveConfigVar('right_bar', '0');
+        Module_Register::instance()->saveConfigVar('hook_sidebar', '0');
         Module_Register::instance()->saveConfigVar('signup_password_retype', '0');
     
         # TBS Favicon
