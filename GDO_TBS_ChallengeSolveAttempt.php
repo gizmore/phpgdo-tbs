@@ -14,9 +14,9 @@ use GDO\Core\GDT_CreatedAt;
  */
 final class GDO_TBS_ChallengeSolveAttempt extends GDO
 {
-    public function gdoCached() { return false; }
+    public function gdoCached() : bool { return false; }
     
-    public function gdoColumns()
+    public function gdoColumns() : array
     {
         return [
             GDT_User::make('csa_user'),

@@ -30,7 +30,7 @@ use GDO\DB\Cache;
  */
 final class GDO_TBS_Challenge extends GDO
 {
-    public function gdoColumns()
+    public function gdoColumns() : array
     {
         return [
             GDT_AutoInc::make('chall_id'),
@@ -39,7 +39,7 @@ final class GDO_TBS_Challenge extends GDO
             GDT_TBS_ChallengeCategory::make('chall_category')->notNull(),
             GDT_TBS_ChallengeStatus::make('chall_status'),
             GDT_Title::make('chall_title'),
-            GDT_Url::make('chall_url')->allowLocal(true)->allowExternal(false)->notNull(),
+            GDT_Url::make('chall_url')->allowInternal()->notNull(),
             
             GDT_Password::make('chall_solution'),
             GDT_Permission::make('chall_permission'),
@@ -124,7 +124,7 @@ final class GDO_TBS_Challenge extends GDO
         $key = $category === null ? $key : $key . $category;
         if ($count === null)
         {
-            if (false === ($count = Cache::get($key)))
+            if (null === ($count = Cache::get($key)))
             {
                 $where = $category === null ? true : "chall_category = " . (int)$category;
                 $count = self::table()->countWhere($where);

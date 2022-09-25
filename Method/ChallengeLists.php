@@ -3,7 +3,7 @@ namespace GDO\TBS\Method;
 
 use GDO\Core\Method;
 use GDO\Core\GDT_Response;
-use GDO\Profile\GDT_User;
+use GDO\User\GDT_User;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
 
 /**

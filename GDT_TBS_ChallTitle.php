@@ -12,7 +12,7 @@ use GDO\User\GDT_ProfileLink;
  */
 final class GDT_TBS_ChallTitle extends GDT_String
 {
-    public function defaultLabel() : void { $this->label('name'); }
+    public function defaultLabel() : self { return $this->label('name'); }
     
     private GDT_ProfileLink $creator;
     

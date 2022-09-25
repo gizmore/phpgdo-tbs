@@ -1,4 +1,5 @@
 <?php
+namespace GDO\TBS\lang;
 return [
     # Meta
     'keywords' =>

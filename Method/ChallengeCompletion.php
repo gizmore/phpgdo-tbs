@@ -2,35 +2,36 @@
 namespace GDO\TBS\Method;
 
 use GDO\Core\GDO;
-use GDO\Core\MethodCompletionSearch;
 use GDO\TBS\GDO_TBS_Challenge;
+use GDO\Core\MethodCompletion;
 
 /**
  * Auto completion for challenges.
+ *
  * @author gizmore
+ * @version 7.0.1
  */
-final class ChallengeCompletion extends MethodCompletionSearch
+final class ChallengeCompletion extends MethodCompletion
 {
-    public function gdoTable()
-    {
-        return GDO_TBS_Challenge::table();
-    }
 
-    public function renderJSON(GDO $gdo)
-    {
-        /** @var $gdo GDO_TBS_Challenge **/
-        return [
-            'id' => $gdo->getID(),
-            'text' => $gdo->displayTitle(),
-            'display' => $gdo->renderChoice(),
-        ];
-    }
-    
-    public function gdoHeaderColumns()
-    {
-        return GDO_TBS_Challenge::table()->gdoColumnsExcept(
-            'chall_deleted', 'chall_deletor', 'chall_solution',
-        );
-    }
-    
+	protected function gdoTable()
+	{
+		return GDO_TBS_Challenge::table();
+	}
+
+	protected function gdoHeaderFields()
+	{
+		return GDO_TBS_Challenge::table()->gdoColumnsExcept('chall_deleted', 'chall_deletor', 'chall_solution',);
+	}
+
+	public function itemToCompletionJSON(GDO $gdo) : array
+	{
+		/** @var $gdo GDO_TBS_Challenge **/
+		return [
+			'id' => $gdo->getID(),
+			'text' => $gdo->displayTitle(),
+			'display' => $gdo->renderOption(),
+		];
+	}
+
 }

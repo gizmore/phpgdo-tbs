@@ -14,9 +14,9 @@ use GDO\User\GDO_UserPermission;
  */
 final class GDO_TBS_ChallengeSolved extends GDO
 {
-    public function gdoCached() { return false; }
+    public function gdoCached() : bool { return false; }
     
-    public function gdoColumns()
+    public function gdoColumns() : array
     {
         return [
             GDT_TBS_Challenge::make('cs_challenge')->primary(),

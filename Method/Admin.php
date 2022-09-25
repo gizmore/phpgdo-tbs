@@ -3,7 +3,7 @@ namespace GDO\TBS\Method;
 
 use GDO\Core\Application;
 use GDO\Core\Method;
-use GDO\Core\MethodAdmin;
+use GDO\Admin\MethodAdmin;
 use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Page;
 
@@ -15,7 +15,7 @@ final class Admin extends Method
      * Before execute we add the top tabs.
      * @see MethodAdmin
      */
-    public function beforeExecute()
+    public function beforeExecute() : void
     {
         if (Application::instance()->isHTML())
         {

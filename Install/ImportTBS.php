@@ -1,29 +1,5 @@
 <?php
 namespace GDO\TBS\Install;
-
-use GDO\TBS\Module_TBS;
-use GDO\Util\CSV;
-use GDO\User\GDO_User;
-use GDO\Country\GDO_Country;
-use GDO\Util\Strings;
-use GDO\TBS\GDO_TBS_Challenge;
-use GDO\TBS\GDT_TBS_ChallengeCategory;
-use GDO\Util\Filewalker;
-use GDO\Util\FileUtil;
-use GDO\Forum\Module_Forum;
-use GDO\Forum\GDO_ForumBoard;
-use GDO\User\GDO_Permission;
-use GDO\TBS\GDO_TBS_ChallengeSolved;
-use GDO\Date\Time;
-use GDO\Forum\GDO_ForumThread;
-use GDO\Forum\GDO_ForumPost;
-use GDO\DB\Database;
-use GDO\UI\GDT_Message;
-use GDO\User\GDO_UserPermission;
-use GDO\Core\Method\ClearCache;
-use GDO\TBS\GDT_TBS_ChallengeStatus;
-use GDO\Core\Website;
-
 /**
  * - Import TBS data from INPUT/ folder.
  * 
@@ -113,13 +89,15 @@ final class ImportTBS
     const CSV_FORUM_POST_EDITOR = 6;
     const CSV_FORUM_POST_EDITED = 7;
     
-    # Excludes from simple form solution checker
-    # Here we can place challenges that are excluded from simple solution checker
-    # @TODO: Complete the list of exceptional / non simple solution files.
-    private static $NO_SIMPLE_FORM = array(
+    /**
+     * Excludes from simple form solution checker
+     * Here we can place challenges that are excluded from simple solution checker.
+     * @TODO: Complete the list of exceptional / non simple solution files.
+     */
+    private static $NO_SIMPLE_FORM = [
         '/challenges/exploit_long/index.php',
-        '/challenges/exploits/exploit_analyse1/index.php'
-    );
+        '/challenges/exploits/exploit_analyse1/index.php',
+    ];
     
     /**
      * @return Module_TBS

@@ -5,7 +5,7 @@ use GDO\Core\MethodAjax;
 use GDO\Core\GDT_Response;
 use GDO\PM\GDO_PM;
 use GDO\User\GDO_User;
-use GDO\DB\GDT_UInt;
+use GDO\Core\GDT_UInt;
 use GDO\Core\GDT_JSON;
 use GDO\OnlineUsers\Method\ViewOnline;
 use GDO\Forum\GDO_ForumUnread;
@@ -53,7 +53,7 @@ final class Heartbeat extends MethodAjax
         if ($cache === null)
         {
             $key = 'tbs_heartbeat_users';
-            if (false === ($cache = Cache::get($key)))
+            if (null === ($cache = Cache::get($key)))
             {
                 $cache = $this->queryOnlineUsers();
                 Cache::set($key, $cache, 30);

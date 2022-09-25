@@ -30,17 +30,14 @@ final class ImportRealTBS extends MethodForm
      * Before execute we add the top tabs.
      * @see MethodAdmin
      */
-    public function beforeExecute()
+    public function onRenderTabs() : void
     {
-        if (Application::instance()->isHTML())
-        {
-            $this->renderNavBar('TBS');
-            GDT_Page::$INSTANCE->topTabs->addField(
-                Module_TBS::instance()->barAdminTabs()
-            );
-        }
+    	$this->renderAdminBar();
+            GDT_Page::$INSTANCE->topResponse()->addField(
+               Module_TBS::instance()->barAdminTabs()
+           );
     }
-    
+
     public function execute()
     {
         if (GDO_DB_DEBUG)

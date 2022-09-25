@@ -8,7 +8,6 @@ use GDO\UI\GDT_Page;
 use GDO\Form\GDT_Submit;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\TBS\GDO_TBS_ChallengeSolvedCategory;
-use GDO\Core\Application;
 use GDO\Admin\MethodAdmin;
 
 final class RecalcPoints extends MethodForm
@@ -17,15 +16,12 @@ final class RecalcPoints extends MethodForm
     
     public function isTransactional() { return false; }
     
-    public function beforeExecute()
+    public function onRenderTabs() : void 
     {
-        if (Application::instance()->isHTML())
-        {
-            $this->renderNavBar('TBS');
-            GDT_Page::$INSTANCE->topTabs->addField(
-                Module_TBS::instance()->barAdminTabs()
-            );
-        }
+    	$this->renderAdminBar();
+        GDT_Page::$INSTANCE->topResponse()->addField(
+        	Module_TBS::instance()->barAdminTabs()
+		);
     }
     
     public function createForm(GDT_Form $form)

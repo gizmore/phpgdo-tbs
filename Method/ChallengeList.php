@@ -3,12 +3,12 @@ namespace GDO\TBS\Method;
 
 use GDO\TBS\GDO_TBS_Challenge;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
-use GDO\Profile\GDT_User;
+use GDO\User\GDT_User;
 use GDO\Table\GDT_Table;
 use GDO\Table\MethodTable;
 use GDO\TBS\GDT_TBS_ChallTitle;
 use GDO\TBS\Module_TBS;
-use GDO\UI\GDT_IconButton;
+use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\TBS\GDT_TBS_GroupmasterIcon;
 
@@ -56,8 +56,8 @@ final class ChallengeList extends MethodTable
             $challs->gdoColumn('chall_education'),
             $challs->gdoColumn('chall_presentation'),
             $challs->gdoColumn('chall_solver_count'),
-            GDT_IconButton::make('chall_questions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_questions.gif')),
-            GDT_IconButton::make('chall_solutions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_solutions.gif')),
+            GDT_Button::make('chall_questions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_questions.gif')),
+            GDT_Button::make('chall_solutions')->noLabel()->rawIcon(Module_TBS::instance()->rawIcon('misc/challenge_forum_solutions.gif')),
             $challs->gdoColumn('chall_solved')->user($this->getUser()),
         ];
     }
