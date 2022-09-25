@@ -10,6 +10,7 @@ use GDO\Register\Module_Register;
 use GDO\Favicon\Module_Favicon;
 use GDO\File\GDO_File;
 use GDO\TBS\Module_TBS;
+use GDO\Classic\Module_Classic;
 
 /**
  * Configure a few modules on install.
@@ -26,6 +27,8 @@ final class InstallTBS
     {
         # TBS is not guest-friendly!
         Module_Core::instance()->saveConfigVar('allow_guests', '0');
+        
+        Module_Classic::instance()->enabled(false);
 //         Module_Core::instance()->saveConfigVar('load_sidebars', '0');
         
         # Disable Friends. We only need it for GDT_ACL
