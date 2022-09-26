@@ -29,7 +29,7 @@ final class Ranking extends MethodQueryTable
     
     public function getMethodTitle() : string
     {
-        return t('mtitle_tbs_ranking');
+        return t('mt_tbs_ranking');
     }
     
     public function gdoTable() : GDO

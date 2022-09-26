@@ -25,7 +25,7 @@ final class GDO_TBS_ChallengeSolveAttempt extends GDO
         ];
     }
     
-    public function getDate() { return $this->getVar('csa_date'); }
+    public function getDate() { return $this->gdoVar('csa_date'); }
     
     public static function getTimeout(GDO_User $user)
     {

@@ -35,7 +35,7 @@ final class GDT_TBS_ChallengeSolved extends GDT_Virtual
     
     public function renderHTML() : string
     {
-        if ($this->gdo->getVar($this->name))
+        if ($this->gdo->gdoVar($this->name))
         {
             return sprintf('<span class="tbs-done">%s</span>', t('tbs_done'));
         }

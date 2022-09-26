@@ -6,7 +6,10 @@ use GDO\Core\Website;
 
 final class Support extends MethodPage
 {
-    public function getTitleLangKey() { return 'tbs_support'; }
+    public function getMethodTitle() : string
+    {
+    	return t('tbs_support');
+    }
     
     public function onMethodInit()
     {

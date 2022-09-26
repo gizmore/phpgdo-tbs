@@ -76,14 +76,14 @@ Use !help to get more information.
     'link_tbs_admin' => 'Administration',
     
     # Vuln code
-    'mtitle_tbs_vulnerablecode' => 'Vulnerable Code',
+    'mt_tbs_vulnerablecode' => 'Vulnerable Code',
 
     # Online users
     'tbs_guestcount' => '%s anonymous',
     
     ## Challenge
     'gdo_tbs_challenge' => 'Challenge',
-    'mtitle_tbs_challengecrud' => 'Edit Challenge',
+    'mt_tbs_challengecrud' => 'Edit Challenge',
     'tbs_table_challs' => '%s %s Challenges',
     'title_challenge' => '%s (%s)',
     'chall_order' => 'ID',
@@ -136,7 +136,7 @@ Use !help to get more information.
     'msg_tbs_solved' => 'Very good, you solved this challenge. You gained %s points and now have %s.',
     
     ## Ranking
-    'mtitle_tbs_ranking' => 'Ranking',
+    'mt_tbs_ranking' => 'Ranking',
     'table_tbs_ranking' => '%s Ranked Users',
     'rank' => 'Rank',
     'solved' => 'Solved',

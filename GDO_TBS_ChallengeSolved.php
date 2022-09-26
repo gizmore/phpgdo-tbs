@@ -29,16 +29,16 @@ final class GDO_TBS_ChallengeSolved extends GDO
     /**
      * @return GDO_User
      */
-    public function getUser() { return $this->getValue('cs_user'); }
-    public function getUserID() { return $this->getVar('cs_user'); }
+    public function getUser() { return $this->gdoValue('cs_user'); }
+    public function getUserID() { return $this->gdoVar('cs_user'); }
     
     /**
      * @return GDO_TBS_Challenge
      */
-    public function getChallenge() { return $this->getValue('cs_challenge'); }
-    public function getChallengeID() { return $this->getVar('cs_challenge'); }
+    public function getChallenge() { return $this->gdoValue('cs_challenge'); }
+    public function getChallengeID() { return $this->gdoVar('cs_challenge'); }
     
-    public function getSolveDate() { return $this->getVar('cs_solved_at'); }
+    public function getSolveDate() { return $this->gdoVar('cs_solved_at'); }
     
     public static function getOrCreate(GDO_TBS_Challenge $challenge, GDO_User $user)
     {

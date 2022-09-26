@@ -20,7 +20,10 @@ use GDO\DB\Cache;
  */
 final class Heartbeat extends MethodAjax
 {
-    public function getTitleLangKey() { return 'tbs_heartbeat'; }
+	public function getMethodTitle() : string
+	{
+		return t('tbs_heartbeat');
+	}
     
     public function execute()
     {
@@ -65,8 +68,8 @@ final class Heartbeat extends MethodAjax
     private function queryOnlineUsers()
     {
         $query = ViewOnline::make()->getQuery()->uncached()->
-            selectOnly('user_id, user_type, user_name, user_real_name, user_guest_name,
-                user_level, user_gender, user_country');
+            selectOnly('user_id, user_type, user_name, NULL as user_real_name, user_guest_name,
+                user_level');
         $users = $query->exec()->fetchAllAssoc();
         return $users;
     }

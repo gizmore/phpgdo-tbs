@@ -37,7 +37,10 @@ final class Migrate extends MethodForm
     
     public function getUserType() : ?string { return GDT_UserType::GHOST; }
     
-    public function getTitleLangKey() { return 'tbs_account_migration_title'; }
+    public function getMethodTitle() : string
+    {
+    	return t('tbs_account_migration_title');
+    }
     
     public function execute()
     {
@@ -72,7 +75,7 @@ final class Migrate extends MethodForm
     public function validateAlreadyActive(GDT_Form $form, GDT $field, $value)
     {
         /** @var $value GDO_User **/
-        if ($value && $value->getVar('user_password'))
+        if ($value && $value->gdoVar('user_password'))
         {
             return $field->error('err_tbs_migrate_not_needed');
         }
@@ -122,7 +125,7 @@ final class Migrate extends MethodForm
     public function formValidated(GDT_Form $form)
     {
         $user = $form->getFormValue('tbs_user');
-        $tbs = $user->getVar('user_name');
+        $tbs = $user->gdoVar('user_name');
         $wechall = $form->getFormVar('wechall_name');
         $email = $form->getFormVar('wechall_mail');
         $url = $this->getMigrationURL($tbs, $wechall, $email);

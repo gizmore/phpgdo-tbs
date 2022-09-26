@@ -1,4 +1,5 @@
 <?php
+namespace GDO\TBS\tpl\ajax;
 use GDO\User\GDT_ProfileLink;
 use GDO\TBS\Method\Heartbeat;
 use GDO\User\GDO_User;
@@ -20,7 +21,7 @@ foreach ($users as $user)
     {
         $profileLink = GDT_ProfileLink::make()->nickname()->user($user);
         $onlineUsers .= sprintf("<div>%s<span>%s</span></div>\n",
-            $profileLink->renderCell(), $user->getVar('user_level'));
+            $profileLink->renderCell(), $user->gdoVar('user_level'));
     }
 }
 ?>

@@ -63,9 +63,9 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
     public function renderHTML() : string
     {
         # Build status tooltip icon.
-        $key = 'tbs_tt_'.$this->getVar();
+        $key = 'tbs_tt_'.$this->gdoVar();
         $tt = $this->tooltip->tooltip($key)->render();
-        $color = self::$COLORS[$this->getVar()];
+        $color = self::$COLORS[$this->gdoVar()];
         $icon = sprintf('<div style="color: %s;">%s</div>', $color, $tt);
         
         # If we can edit we return a link with icon as label.

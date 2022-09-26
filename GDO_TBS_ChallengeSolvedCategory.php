@@ -150,7 +150,7 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 
         # Change user_level
         $user = GDO_User::table()->find($userid);
-        $user->setVar('user_level', (int)self::get($user)->getVar('csc_points'));
+        $user->setVar('user_level', (int)self::get($user)->gdoVar('csc_points'));
         $user->save();
     }
     
@@ -192,10 +192,10 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
     public static function updateUser(GDO_User $user)
     {
         $row = self::get($user);
-        $before = $row->getVar('csc_points');
+        $before = $row->gdoVar('csc_points');
         self::updateUserWithHugeQuery($user->getID());
         $row = self::get($user);
-        $after = $row->getVar('csc_points');
+        $after = $row->gdoVar('csc_points');
         
         return [$before, $after];
     }

@@ -1,4 +1,5 @@
 <?php
+namespace GDO\TBS\tpl;
 use GDO\TBS\Module_TBS;
 use GDO\TBS\GDT_TBS_Online;
 use GDO\User\GDO_User;
@@ -39,7 +40,7 @@ $user = GDO_User::current();
     
     <div class="left_link">
       <img src="<?=$mod->wwwPath('img/sidebar/menu_account.gif')?>" />
-      ::[<a href="<?=href('Account', 'Settings')?>"><?=t('link_tbs_account')?></a>]
+      ::[<a href="<?=href('Account', 'AllSettings')?>"><?=t('link_tbs_account')?></a>]
     </div>
     
   </div>

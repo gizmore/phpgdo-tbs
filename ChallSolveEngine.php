@@ -33,7 +33,7 @@ final class ChallSolveEngine
         }
         
         /** @var $bcrypt \GDO\Crypto\BCrypt **/
-        $bcrypt = $this->challenge->getValue('chall_solution');
+        $bcrypt = $this->challenge->gdoValue('chall_solution');
         if ($bcrypt === null)
         {
             if ($this->challenge->getStatus() === GDT_TBS_ChallengeStatus::NOT_TRIED)

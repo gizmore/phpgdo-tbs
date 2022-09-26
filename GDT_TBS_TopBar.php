@@ -21,7 +21,12 @@ use GDO\OnlineUsers\GDT_OnlineUsers;
  */
 final class GDT_TBS_TopBar extends GDT
 {
-    public function renderCell() : string
+	public function getMemberCount() : int
+	{
+		return GDO_User::table()->countWhere('user_type="member"');
+	}
+	
+    public function renderHTML() : string
     {
         $mo = Module_TBS::instance();
 
@@ -29,7 +34,7 @@ final class GDT_TBS_TopBar extends GDT
         
         $countViews = GDO_Statistic::totalHits();
         $countChalls = GDO_TBS_Challenge::getChallengeCount();
-        $countUsers = GDO_User::getMemberCount();
+        $countUsers = $this->getMemberCount();
         $countOnline = GDT_OnlineUsers::getOnlineUsers();
         
         $views = t('tbs_top_views');

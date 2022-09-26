@@ -14,7 +14,7 @@ final class GDT_TBS_ChallID extends GDT_UInt
     
     public function renderCell()
     {
-        return $this->getVar() . ':';
+        return $this->gdoVar() . ':';
     }
     
 }

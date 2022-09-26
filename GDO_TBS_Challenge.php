@@ -66,13 +66,13 @@ final class GDO_TBS_Challenge extends GDO
         ];
     }
     
-    public function getTitle() { return $this->getVar('chall_title'); }
+    public function getTitle() { return $this->gdoVar('chall_title'); }
     public function displayTitle() { return $this->gdoDisplay('chall_title'); }
-    public function getQuestionBoardID() { return $this->getVar('chall_questions'); }
-    public function getSolutionBoardID() { return $this->getVar('chall_solutions'); }
-    public function getCategory() { return $this->getVar('chall_category'); }
+    public function getQuestionBoardID() { return $this->gdoVar('chall_questions'); }
+    public function getSolutionBoardID() { return $this->gdoVar('chall_solutions'); }
+    public function getCategory() { return $this->gdoVar('chall_category'); }
     public function displayCategory() { return $this->gdoDisplay('chall_category'); }
-    public function getStatus() { return $this->getVar('chall_status'); }
+    public function getStatus() { return $this->gdoVar('chall_status'); }
     
     /**
      * @return GDO_Permission
@@ -89,14 +89,14 @@ final class GDO_TBS_Challenge extends GDO
     /**
      * @return GDO_User
      */
-    public function getCreator() { return $this->getValue('chall_creator'); }
+    public function getCreator() { return $this->gdoValue('chall_creator'); }
     
     /**
      * @return URL
      */
-    public function getURL() { return $this->getValue('chall_url'); }
+    public function getURL() { return $this->gdoValue('chall_url'); }
     
-    public function getOrder() { return $this->getVar('chall_order'); }
+    public function getOrder() { return $this->gdoVar('chall_order'); }
     
     public function hrefEdit() { return href('TBS', 'ChallengeCRUD', "&id={$this->getID()}"); }
     public function hrefChallenge() { return href('TBS', 'Challenge', "&challenge={$this->getID()}"); }

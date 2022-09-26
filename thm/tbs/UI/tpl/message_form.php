@@ -1,13 +1,13 @@
-<?php /** @var $field \GDO\UI\GDT_Message **/ ?>
+<?php
+namespace GDO\TBS\thm\tbs\UI\tpl;
+/** @var $field \GDO\UI\GDT_Message **/
+?>
 <div class="gdt-container<?=$field->classError()?>">
-<!--   <div> -->
-  <?=$field->htmlIcon()?>
-  <label <?=$field->htmlForID()?>><?=$field->displayLabel()?></label>
-<!--   </div> -->
+  <label<?=$field->htmlForID()?>><?=$field->htmlIcon()?><?=$field->renderLabel()?></label>
   <textarea
    <?=$field->htmlID()?>
    class="<?=$field->classEditor()?>"
-   <?=$field->htmlFormName()?>
+   <?=$field->htmlName()?>
    rows="6"
    <?=$field->htmlRequired()?>
    <?=$field->htmlDisabled()?>><?=html($field->getVarInput())?></textarea>

@@ -11,7 +11,7 @@ use GDO\Core\GDT_Template;
  */
 final class GDT_TBS_Online extends GDT
 {
-    public function renderCell() : string
+    public function renderHTML() : string
     {
         return GDT_Template::php('TBS', 'ajax/active_users.php');
     }
