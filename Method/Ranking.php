@@ -54,7 +54,7 @@ final class Ranking extends MethodQueryTable
 //         $from = $this->table->pagemenu->getFromS($page, $ipp);
         return [
             GDT_TBS_Rank::make('rank')->startRank(1),
-            GDT_Country::make('user_country')->labelNone()->withName(false),
+            GDT_Country::make('country')->labelNone()->withName(false),
             GDT_ProfileLink::make('username')->nickname(),
             GDT_Level::make('user_level')->label('solved'),
             $this->groupmasterIcon(0),

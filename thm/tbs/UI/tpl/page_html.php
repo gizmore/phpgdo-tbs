@@ -1,4 +1,5 @@
 <?php
+namespace GDO\TBS\thm\tbs\UI\tpl;
 use GDO\Core\Module_Core;
 use GDO\Core\Website;
 use GDO\TBS\GDT_TBS_Sidebar;
@@ -6,12 +7,10 @@ use GDO\Core\Javascript;
 use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Loading;
 use GDO\TBS\GDT_TBS_TopBar;
-use GDO\Perf\GDT_PerfBar;
 /**
  * TBS page layout.
  */
 /** @var $page GDT_Page **/
-$page->bottomBar()->addField(GDT_PerfBar::make());
 ?>
 <!DOCTYPE html>
 <html>

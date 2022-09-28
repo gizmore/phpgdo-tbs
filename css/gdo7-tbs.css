@@ -550,7 +550,7 @@ img.gdo-captcha-img {
 }
 
 /** Loading **/
-#gdt-loading-pane {
+#gdt-loading {
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -560,7 +560,7 @@ img.gdo-captcha-img {
 	opacity: 0.5;
 }
 
-#gdt-loading-pane span {
+#gdt-loading span {
 	display: block;
 	position: relative;
 	top: 50%;
@@ -570,7 +570,7 @@ img.gdo-captcha-img {
 	background-color: rgba(255, 255, 255, 0);
 }
 
-#gdt-loading-pane.done {
+#gdt-loading.done {
 	display: none;
 }
 
