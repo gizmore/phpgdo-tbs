@@ -27,6 +27,8 @@ use GDO\Util\Strings;
 use GDO\Util\CSV;
 use GDO\UI\GDT_Page;
 use GDO\Core\Debug;
+use GDO\Country\Module_Country;
+use GDO\Mail\Module_Mail;
 
 
 /**
@@ -293,11 +295,13 @@ final class TBSImport
 	
 	public function importUsers()
 	{
+		$cnt = Module_Country::instance();
 		$usr = Module_User::instance();
 		$reg = Module_Register::instance();
+		$mal = Module_Mail::instance();
 		$path = $this->getImportPath('users.csv');
 		$csv = new CSV($path);
-		$csv->eachLine(function($row) use($reg, $usr) {
+		$csv->eachLine(function($row) use($reg, $usr, $cnt, $mal) {
 			
 			$username = $row[self::CSV_USER_USERNAME];
 			$u = GDO_User::table()->getBy('user_name', $username);
@@ -306,9 +310,7 @@ final class TBSImport
 				$u = GDO_User::blank([
 					'user_name' => $username,
 					'user_type' => 'member',
-					'user_email' => $this->convertEmail($row[self::CSV_USER_EMAIL]),
 					'user_level' => $row[self::CSV_USER_SOLVED],
-					'user_country' => $this->convertCountryID($row[self::CSV_USER_COUNTRY]),
 				])->insert();
 				
 				if ($row[self::CSV_USER_WEBSITE])
@@ -320,6 +322,10 @@ final class TBSImport
 				{
 					Module_TBS::instance()->saveUserSetting($u, 'tbs_ranked', '0');
 				}
+				
+				$mal->saveUserSetting($u, 'email', self::convertEmail($row[self::CSV_USER_EMAIL]));
+				
+				$cnt->saveUserSetting($u, 'country', $this->convertCountryID($row[self::CSV_USER_COUNTRY]));
 				
 				$regdate = $this->convertDate($row[self::CSV_USER_REGDATE]);
 				$reg->saveUserSetting($u, 'register_date', $regdate);
