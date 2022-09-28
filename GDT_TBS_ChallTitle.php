@@ -3,6 +3,7 @@ namespace GDO\TBS;
 
 use GDO\Core\GDT_String;
 use GDO\User\GDT_ProfileLink;
+use GDO\Core\WithGDO;
 
 /**
  * A challenge title.
@@ -12,6 +13,8 @@ use GDO\User\GDT_ProfileLink;
  */
 final class GDT_TBS_ChallTitle extends GDT_String
 {
+	use WithGDO;
+	
     public function defaultLabel() : self { return $this->label('name'); }
     
     private GDT_ProfileLink $creator;

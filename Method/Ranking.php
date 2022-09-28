@@ -41,9 +41,10 @@ final class Ranking extends MethodQueryTable
     {
         return $this->gdoTable()->select('*')->
                 joinObject('csc_user')->
-                where('user_type="member"')->
-                fetchTable(GDO_User::table());
+                where('user_type="member"');
     }
+    
+    public function gdoFetchAs() { return GDO_User::table(); }
     
     public function gdoHeaders() : array
     {

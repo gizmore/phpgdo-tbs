@@ -31,4 +31,9 @@ final class GDT_TBS_Rank extends GDT_UInt
         return $this;
     }
     
+    public function renderTHead() : string
+    {
+    	return t('rank');
+    }
+    
 }

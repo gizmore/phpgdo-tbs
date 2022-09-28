@@ -3,6 +3,7 @@ namespace GDO\TBS;
 
 use GDO\User\GDO_User;
 use GDO\Core\GDT;
+use GDO\Core\WithGDO;
 
 /**
  * An icon that represents solvestate for a category.
@@ -12,6 +13,8 @@ use GDO\Core\GDT;
  */
 final class GDT_TBS_GroupmasterIcon extends GDT
 {
+	use WithGDO;
+	
     /**
      * @return GDO_User
      */

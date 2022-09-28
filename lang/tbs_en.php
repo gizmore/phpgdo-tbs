@@ -137,7 +137,7 @@ Use !help to get more information.
     
     ## Ranking
     'mt_tbs_ranking' => 'Ranking',
-    'table_tbs_ranking' => '%s Ranked Users',
+    'list_tbs_ranking' => '%s Ranked Users',
     'rank' => 'Rank',
     'solved' => 'Solved',
     'tt_tbs_groupmaster' => '%s has solved %.01f%% in the category %s',

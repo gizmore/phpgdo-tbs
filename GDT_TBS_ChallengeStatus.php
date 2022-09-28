@@ -5,6 +5,7 @@ use GDO\Core\GDT_Enum;
 use GDO\UI\GDT_Tooltip;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Link;
+use GDO\Core\WithGDO;
 
 /**
  * Indicate challenge import status.
@@ -12,6 +13,8 @@ use GDO\UI\GDT_Link;
  */
 final class GDT_TBS_ChallengeStatus extends GDT_Enum
 {
+	use WithGDO;
+	
     const NOT_CHECKED = 'not_checked';
     const NOT_TRIED = 'not_tried';
     const IN_PROGRESS = 'in_progress';
@@ -63,9 +66,9 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
     public function renderHTML() : string
     {
         # Build status tooltip icon.
-        $key = 'tbs_tt_'.$this->gdoVar();
+        $key = 'tbs_tt_'.$this->getVar();
         $tt = $this->tooltip->tooltip($key)->render();
-        $color = self::$COLORS[$this->gdoVar()];
+        $color = self::$COLORS[$this->getVar()];
         $icon = sprintf('<div style="color: %s;">%s</div>', $color, $tt);
         
         # If we can edit we return a link with icon as label.
