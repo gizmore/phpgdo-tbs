@@ -12,6 +12,8 @@ use GDO\User\GDT_ProfileLink;
 use GDO\TBS\GDO_TBS_ChallengeSolvedCategory;
 use GDO\User\GDO_User;
 use GDO\DB\Query;
+use GDO\Core\WithFileCache;
+use GDO\Core\GDT_Virtual;
 
 /**
  * TBS ranking table.
@@ -19,13 +21,12 @@ use GDO\DB\Query;
  */
 final class Ranking extends MethodQueryTable
 {
-    public function fileCached() { return true; }
+	use WithFileCache;
     
     public function isOrdered() : bool { return false; }
     public function isFiltered() { return false; }
     public function getDefaultOrder() : ?string { return 'user_level DESC'; }
     public function getDefaultIPP() : int { return 100; }
-    public function fetchAs() { return GDO_User::table(); }
     
     public function getMethodTitle() : string
     {
@@ -39,7 +40,7 @@ final class Ranking extends MethodQueryTable
     
     public function getQuery() : Query
     {
-        return $this->gdoTable()->select('*')->
+        return $this->gdoTable()->select()->
                 joinObject('csc_user')->
                 where('user_type="member"');
     }
@@ -48,13 +49,12 @@ final class Ranking extends MethodQueryTable
     
     public function gdoHeaders() : array
     {
-//         $o = $this->table->headers->name;
-//         $page = $this->table->headers->getField('page')->getRequestVar($o, 1);
-//         $ipp = $this->table->headers->getField('ipp')->getRequestVar($o, 100);
-//         $from = $this->table->pagemenu->getFromS($page, $ipp);
+        $page = $this->getPage();
+        $ipp = $this->getIPP();
+        $from = $this->table->pagemenu->getFromS($page, $ipp);
         return [
-            GDT_TBS_Rank::make('rank')->startRank(1),
-            GDT_Country::make('country')->labelNone()->withName(false),
+            GDT_TBS_Rank::make('rank')->startRank($from),
+        	GDT_Virtual::make()->gdtType(GDT_Country::make('country'))->subquery("SELECT uset_value FROM gdo_usersettings WHERE uset_user=gdo_user.value AND uset_key='country'"),
             GDT_ProfileLink::make('username')->nickname(),
             GDT_Level::make('user_level')->label('solved'),
             $this->groupmasterIcon(0),
