@@ -29,7 +29,7 @@ $page->bottomBar()->addField(GDT_PerfBar::make());
 	    <?=GDT_TBS_Sidebar::make()->render()?>
 	    <?=GDT_TBS_TopBar::make()->render()?>
 		<div class="gdo-main">
-		  <?=$page->topBar()->render()?>
+		  <?php #$page->topBar()->render()?>
 		  <?=$page->topResponse()->render()?>
 		  <?=$page->html?>
 		</div>
