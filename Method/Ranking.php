@@ -52,7 +52,7 @@ final class Ranking extends MethodQueryTable
     {
         $page = $this->getPage();
         $ipp = $this->getIPP();
-        $from = GDT_PageMenu::getFromS(getFromS($page, $ipp);
+        $from = GDT_PageMenu::getFromS($page, $ipp);
         return [
             GDT_TBS_Rank::make('rank')->startRank($from),
         	GDT_Virtual::make()->gdtType(GDT_Country::make('country'))->subquery("SELECT uset_value FROM gdo_usersettings WHERE uset_user=gdo_user.value AND uset_key='country'"),
