@@ -14,6 +14,7 @@ use GDO\User\GDO_User;
 use GDO\DB\Query;
 use GDO\Core\WithFileCache;
 use GDO\Core\GDT_Virtual;
+use GDO\Table\GDT_PageMenu;
 
 /**
  * TBS ranking table.
@@ -51,7 +52,7 @@ final class Ranking extends MethodQueryTable
     {
         $page = $this->getPage();
         $ipp = $this->getIPP();
-        $from = $this->table->pagemenu->getFromS($page, $ipp);
+        $from = GDT_PageMenu::getFromS(getFromS($page, $ipp);
         return [
             GDT_TBS_Rank::make('rank')->startRank($from),
         	GDT_Virtual::make()->gdtType(GDT_Country::make('country'))->subquery("SELECT uset_value FROM gdo_usersettings WHERE uset_user=gdo_user.value AND uset_key='country'"),
