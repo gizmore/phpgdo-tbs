@@ -14,7 +14,6 @@ use GDO\User\GDT_UserType;
 use GDO\Util\Common;
 use GDO\TBS\Module_TBS;
 use GDO\Recovery\GDO_UserRecovery;
-use GDO\Core\Website;
 use GDO\Mail\GDT_Email;
 use GDO\Net\GDT_Url;
 use GDO\Form\GDT_Validator;
@@ -158,7 +157,7 @@ final class Migrate extends MethodForm
             # Initiate recovery
             $token = GDO_UserRecovery::blank(['pw_user_id' => $user->getID()])->replace();
             $href = href('Recovery', 'Change', "&userid={$user->getID()}&token=".$token->getToken());
-            Website::redirectMessage('msg_tbs_migrate_recovery', null, $href);
+            $this->redirectMessage('msg_tbs_migrate_recovery', null, $href);
         }
         
     }
