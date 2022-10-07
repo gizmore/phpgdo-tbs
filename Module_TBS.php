@@ -269,16 +269,18 @@ final class Module_TBS extends GDO_Module
 		GDO_TBS_ChallengeSolvedCategory::updateUser($user);
 	}
 
-	public function hookIgnoreDocsFiles(GDT_Array $ignore)
+	public function thirdPartyFolders(): array
 	{
-		$ignore->data[] = 'GDO/TBS/challenges/**/*';
-		$ignore->data[] = 'GDO/TBS/DUMP/**/*';
-		$ignore->data[] = 'GDO/TBS/HIDDEN/**/*';
-		$ignore->data[] = 'GDO/TBS/HIDDEN_EXAMPLE/**/*';
-		$ignore->data[] = 'GDO/TBS/INPUT/**/*';
-		$ignore->data[] = 'GDO/TBS/tutorials/**/*';
-		$ignore->data[] = 'GDO/TBS/downloads/**/*';
-		$ignore->data[] = 'GDO/TBS/scripts/**/*';
+		return [
+			'challenges/',
+			'DUMP/',
+			'HIDDEN/',
+			'HIDDEN_EXAMPLE/',
+			'INPUT/',
+			'tutorials/',
+			'downloads/',
+			'scripts/',
+		];
 	}
 
 	# #########################
