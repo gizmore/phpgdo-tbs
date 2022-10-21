@@ -145,7 +145,7 @@ final class Module_TBS extends GDO_Module
 		return $this->getConfigVar('tbs_xauth_key');
 	}
 
-	public function getACLDefaults(): ?array
+	public function getACLDefaults(): array
 	{
 		return [
 			'tbs_website' => [
