@@ -59,7 +59,7 @@ final class InstallTBS
     
         # TBS Favicon
         $path = Module_TBS::instance()->filePath('Install/favicon.ico');
-        $file = GDO_File::fromPath('favicon.ico', $path)->insert()->copy();
+        $file = GDO_File::fromPath('favicon.ico', $path)->insert();
         Module_Favicon::instance()->saveConfigVar('favicon', $file->getID());
         Module_Favicon::instance()->updateFavicon();
     }
