@@ -31,14 +31,12 @@ use GDO\Core\Application;
  * - Read the Import instructions
  * - Solution to crypto1 is ahdefjuklgrbdsegf
  *
- * @todo BBDecoder in Module_TBSBBMessage
+ * @TODO BBDecoder in Module_TBSBBMessage
  * @TODO Create a new challenge \o/
  * 
- * @TBS Erik,TBS,Phas,ch0wch0w,jmoncayo,matrixman,quangntenemy,dalfor,dloser,tehron,livinskull,Caesum,Element,Bazing,BaRa,Cyber,JackPott,Towley,Unhandled,Inferno,Kender,rhican,Tropic7,DR_Blutig,Harlequin,relee,
- * * * * * * * * * * * * * * * * * * * * **  * * *  ** *  * * *  * ** * * * * * * **  ** * * * ** * * * * * * * ** * * * * ** * * * * * ** * * ** * * * * * * * * * * * * * * * * * * * * **  * * *  ** *  * * *  * ** * * * * * * **  ** * * * ** * * * * * * * ** * * * * ** * * * * * ** * * ** 
  * @author gizmore
+ * @version 7.0.2
  * @license Property of Erik and TBS
- * @version 7.0.1
  */
 final class Module_TBS extends GDO_Module
 {
@@ -52,6 +50,9 @@ final class Module_TBS extends GDO_Module
 		return true;
 	}
 
+	/**
+	 * Indicate module provides the tbs theme.
+	 */
 	public function getTheme(): ?string
 	{
 		return 'tbs';
@@ -98,6 +99,9 @@ final class Module_TBS extends GDO_Module
 		];
 	}
 
+	/**
+	 * Database tables to install.
+	 */
 	public function getClasses(): array
 	{
 		return [
@@ -153,12 +157,12 @@ final class Module_TBS extends GDO_Module
 			'tbs_website' => [
 				GDT_ACLRelation::ALL,
 				0,
-				null
+				null,
 			],
 			'tbs_category' => [
 				GDT_ACLRelation::ALL,
 				0,
-				null
+				null,
 			],
 		];
 	}
@@ -225,9 +229,6 @@ final class Module_TBS extends GDO_Module
 	# ############
 	/**
 	 * Add fields to profile card.
-	 *
-	 * @param GDO_User $user
-	 * @param GDT_Card $card
 	 */
 	public function hookProfileCard(GDO_User $user, GDT_Card $card)
 	{
@@ -271,17 +272,23 @@ final class Module_TBS extends GDO_Module
 		GDO_TBS_ChallengeSolvedCategory::updateUser($user);
 	}
 
+	/**
+	 * Ignore these folders in documentation, code statistics, etc.
+	 * Those are usally 3rd party libraries or data folders, and they default to npm/yarn/composer deployment folders.
+	 */
 	public function thirdPartyFolders(): array
 	{
 		return [
+			'bin/',
 			'challenges/',
+			'downloads/',
 			'DUMP/',
 			'HIDDEN/',
 			'HIDDEN_EXAMPLE/',
 			'INPUT/',
-			'tutorials/',
-			'downloads/',
 			'scripts/',
+			'tutorials/',
+			'vulnerable_code/'
 		];
 	}
 
