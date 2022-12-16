@@ -18,7 +18,6 @@ use GDO\UI\GDT_Container;
 use GDO\DB\Query;
 use GDO\Votes\Module_Votes;
 use GDO\Core\GDT_Secret;
-use GDO\Core\GDT_Array;
 use GDO\Core\Method;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT_Response;
@@ -27,13 +26,16 @@ use GDO\Core\CSS;
 use GDO\Core\Application;
 
 /**
- * TBS website revival as gdo module.
+ * TBS Website Revival as phpgdo7 module.
  *
  * - Read the Import instructions
  * - Solution to crypto1 is ahdefjuklgrbdsegf
  *
  * @todo BBDecoder in Module_TBSBBMessage
- *      
+ * @TODO Create a new challenge \o/
+ * 
+ * @TBS Erik,TBS,Phas,ch0wch0w,jmoncayo,matrixman,quangntenemy,dalfor,dloser,tehron,livinskull,Caesum,Element,Bazing,BaRa,Cyber,JackPott,Towley,Unhandled,Inferno,Kender,rhican,Tropic7,DR_Blutig,Harlequin,relee,
+ * * * * * * * * * * * * * * * * * * * * **  * * *  ** *  * * *  * ** * * * * * * **  ** * * * ** * * * * * * * ** * * * * ** * * * * * ** * * ** * * * * * * * * * * * * * * * * * * * * **  * * *  ** *  * * *  * ** * * * * * * **  ** * * * ** * * * * * * * ** * * * * ** * * * * * ** * * ** 
  * @author gizmore
  * @license Property of Erik and TBS
  * @version 7.0.1
