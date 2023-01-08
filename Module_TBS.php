@@ -75,6 +75,7 @@ final class Module_TBS extends GDO_Module
 	{
 		return [
 			'Admin',
+			'Avatar',
 			'Captcha',
 			'Classic',
 			'Country',
