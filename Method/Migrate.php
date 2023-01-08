@@ -94,7 +94,7 @@ final class Migrate extends MethodForm
     {
         $host = 'https://www.wechall.net';
         return sprintf(
-            '%s/index.php?mo=WeChall&me=TBSMigration&tbs=%s&wc=%s&email=%s&token=%s&xauth=%s&host=%s',
+            '%s/index.php?_mo=WeChall&_me=TBSMigration&tbs=%s&wc=%s&email=%s&token=%s&xauth=%s&host=%s',
             $host,
             urlencode($tbs),
             urlencode($wechall),
