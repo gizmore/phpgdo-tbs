@@ -153,7 +153,7 @@ div.gdo-main {
 
 /** Panel **/
 .gdo-panel,
-.gdo-form,
+.gdt-form,
 .gdt-card,
 .gdt-table,
 .gdo-pagemenu {
@@ -171,8 +171,8 @@ div.gdo-main {
 	text-align: justify;
 }
 .gdo-panel > p,
-.gdo-form .gdo-form-inner,
-.gdo-form p {
+.gdt-form .gdt-form-inner,
+.gdt-form p {
 	padding: 4px 8px;
 	color: #000;
 	background-color: #c0c0b8;
@@ -181,7 +181,7 @@ div.gdo-main {
 	line-height: 16px;
 }
 
-.gdo-form form {
+.gdt-form form {
 	padding: 0 8px;
 }
 
@@ -358,59 +358,60 @@ ul.pagination li.page-selected {
 }
 
 /** Forms **/
-.gdo-form div.gdo-form-inner {
+.gdt-form div.gdt-form-inner {
 	display: grid;
 	width: auto;
 	grid-template-columns: auto auto 9fr;
 	grid-template-rows: auto;
 }
 
-.gdo-form .gdo-form-inner > .gdt-container {
+.gdt-form .gdt-form-inner > .gdt-container {
 	display: contents;
 }
 
-.gdo-form .gdo-form-actions {
+.gdt-form .gdt-form-actions {
 	margin: 8px 2px;
 }
 
-.gdo-form form .gdo-icon {
+.gdt-form form .gdo-icon {
 	line-height: 28px;
 }
-.gdo-form form label {
+.gdt-form form label {
 	line-height: 28px;
 	grid-column: 2 / 3;
 	margin-right: 8px;
 	max-width: 240px;
 }
 
-.gdo-form .gdo-form-inner .gdt-link {
+.gdt-form .gdt-form-inner .gdt-link {
 	height: 28px;
 	line-height: 28px;
 	vertical-align: middle;
 }
 
-.gdo-form form > input {
+.gdt-form form > input {
 	grid-column: 1 / 4;
 }
-.gdo-form .gdt-headline,
-.gdo-form .gdo-form-head,
-.gdo-form form textarea,
-.gdo-form form textarea,
-.gdo-form-inner > .gdo-panel,
-.gdo-form form .gdt-bar,
-.gdo-form form .gdt-divider,
-.gdo-form form .gdt-paragraph,
-.gdo-form form .gdt-link,
+.gdt-form .gdt-headline,
+.gdt-form .gdt-form-head,
+.gdt-form form textarea,
+.gdt-form .gdt-form-text,
+.gdt-form .gdt-form-actions,
+.gdt-form-inner > .gdo-panel,
+.gdt-form form .gdt-bar,
+.gdt-form form .gdt-divider,
+.gdt-form form .gdt-paragraph,
+.gdt-form form .gdt-link,
 .form-span-columns,
-.gdo-form form > .gdt-container .gdt-container,
-.gdo-form form .gdo-tabs,
-.gdo-form form .gdo-form-error,
+.gdt-form form > .gdt-container .gdt-container,
+.gdt-form form .gdo-tabs,
+.gdt-form form .gdt-form-error,
 .gdo-file-controls {
 	grid-column: 1 / 4;
 }
 
 
-.gdo-form form .gdt-divider {
+.gdt-form form .gdt-divider {
 	background: #AAA;
 	padding: 4px 8px;
 	margin: 4px -8px;
@@ -418,11 +419,11 @@ ul.pagination li.page-selected {
 	border-bottom: 1px solid #333;
 }
 
-.gdo-form form .gdt-divider:first-child {
+.gdt-form form .gdt-divider:first-child {
 	margin-top: -6px;
 }
 
-.gdo-form-error {
+.gdt-form-error {
 	background: #D87;
 	padding: 4px 8px;
 	margin-top: 4px;
@@ -436,13 +437,13 @@ ul.pagination li.page-selected {
 	background: #fcb;
 }
 
-.gdo-form h2 {
+.gdt-form h2 {
 	color: #D00000;
 	font-weight: bold;
 	font-size: 20px;
 	padding-bottom: 4px;
 }
-.gdo-form .gdo-file-preview img {
+.gdt-form .gdo-file-preview img {
 	max-width: 100%;
 }
 
@@ -481,17 +482,17 @@ img.gdo-captcha-img {
 	margin-left: auto;
 }
 
-.gdo-form input[type=text],
-.gdo-form input[type=password],
-.gdo-form input[type=search],
-.gdo-form input[type=number],
-.gdo-form input[type=email],
-.gdo-form input[type=date],
-.gdo-form input[type=datetime],
-.gdo-form input[type=datetime-local],
+.gdt-form input[type=text],
+.gdt-form input[type=password],
+.gdt-form input[type=search],
+.gdt-form input[type=number],
+.gdt-form input[type=email],
+.gdt-form input[type=date],
+.gdt-form input[type=datetime],
+.gdt-form input[type=datetime-local],
 .easy-autocomplete input,
-.gdo-form select,
-.gdo-form textarea {
+.gdt-form select,
+.gdt-form textarea {
 	border-color: #ccc;
 	border-radius: 4px;
 	border-style: solid;
@@ -506,17 +507,17 @@ img.gdo-captcha-img {
 	vertical-align: middle;
 }
 
-.gdo-form textarea {
+.gdt-form textarea {
 	height: auto;
 	line-height: 18px;
 }
 
-.gdo-form input[type=file] {
+.gdt-form input[type=file] {
 	border: none;
 	padding: 4px;
 }
 
-.gdo-form select {
+.gdt-form select {
 	padding: 5px 4px;
 }
 
@@ -528,11 +529,11 @@ img.gdo-captcha-img {
 	padding: 0px 7px;
 	width: 100%;
 }
-.gdo-form textarea {
+.gdt-form textarea {
 	width: 100%;
 }
 
-.gdo-form form > .gdt-container:first-child > * {
+.gdt-form form > .gdt-container:first-child > * {
 	margin-top: 8px;
 }
 

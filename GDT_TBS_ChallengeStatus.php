@@ -57,13 +57,13 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
         return $this->gdo;
     }
     
-    public function enumLabel(string $enumValue=null) : string
+    public function displayVar(string $enumValue = null): string
     {
         return $enumValue === null ? t($this->emptyLabel, $this->emptyLabelArgs) : t("tbs_tt_$enumValue");
     }
     
     
-    public function renderHTML() : string
+    public function renderCell() : string
     {
         # Build status tooltip icon.
         $key = 'tbs_tt_'.$this->getVar();

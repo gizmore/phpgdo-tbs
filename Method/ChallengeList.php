@@ -37,6 +37,12 @@ final class ChallengeList extends MethodTable
         ];
     }
     
+    protected function gdoTableHREF() : string
+    {
+    	$app = "&category=" . $this->getCategory();
+    	return href('TBS', 'ChallengeLists', $app);
+    }
+    
     /**
      * @return GDO_User
      */
@@ -64,7 +70,7 @@ final class ChallengeList extends MethodTable
         ];
     }
     
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->gdoParameterVar('category');
     }

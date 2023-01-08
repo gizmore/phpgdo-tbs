@@ -116,10 +116,17 @@ $user = GDO_User::current();
       ::[<a href="<?=href('Contact', 'Form')?>"><?=t('link_tbs_contact')?></a>]
     </div>
   
+<?php if ($user->isAuthenticated()) : ?>
     <div class="left_link">
       <img src="<?=$mod->wwwPath('img/sidebar/menu_logout.gif')?>" />
       ::[<a href="<?=href('Login', 'Logout')?>"><?=t('link_tbs_logout')?></a>]
     </div>
+<?php else: ?>
+    <div class="left_link">
+      <img src="<?=$mod->wwwPath('img/sidebar/menu_logout.gif')?>" />
+      ::[<a href="<?=href('TBS', 'Welcome')?>"><?=t('link_tbs_login')?></a>]
+    </div>
+<?php endif; ?>
   
   </div>
   

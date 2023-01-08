@@ -29,6 +29,7 @@ use GDO\UI\GDT_Page;
 use GDO\Core\Debug;
 use GDO\Country\Module_Country;
 use GDO\Mail\Module_Mail;
+use GDO\HTML\Module_HTML;
 
 
 /**
@@ -325,7 +326,8 @@ final class TBSImport
 				
 				$mal->saveUserSetting($u, 'email', self::convertEmail($row[self::CSV_USER_EMAIL]));
 				
-				$cnt->saveUserSetting($u, 'country', $this->convertCountryID($row[self::CSV_USER_COUNTRY]));
+				$cnt->saveUserSetting($u, 'country_of_origin', $this->convertCountryID($row[self::CSV_USER_COUNTRY]));
+				$cnt->saveUserSetting($u, 'country_of_living', $this->convertCountryID($row[self::CSV_USER_COUNTRY]));
 				
 				$regdate = $this->convertDate($row[self::CSV_USER_REGDATE]);
 				$reg->saveUserSetting($u, 'register_date', $regdate);
@@ -575,7 +577,7 @@ final class TBSImport
 	public function importForum()
 	{
 		# Fix decoder to purify for now
-		GDT_Message::$DECODER = [GDT_Message::class, 'DECODE']; # default purifier
+		GDT_Message::$DECODER = [GDT_Message::class, 'ESCAPE']; # default purifier
 		
 		$this->importForumRoots();
 		Module_Forum::instance()->saveConfigVar('forum_root', $this->boardMapped('13'));
@@ -846,7 +848,7 @@ final class TBSImport
 		$message = str_replace('-->', '--&gt;', $message);
 		
 		# Purifier
-		return GDT_Message::getPurifier()->purify($message);
+		return Module_HTML::instance()->purify($message);
 	}
 	
 	###################
