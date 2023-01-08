@@ -654,6 +654,8 @@ final class TBSImport
 			$this->boardMapping[$bid] = $board->getID();
 		}
 		
+		
+		
 		# Fix PID again because foreign keys
 		foreach ($roots as $row)
 		{
@@ -668,6 +670,8 @@ final class TBSImport
 		GDO_ForumBoard::table()->rebuildFullTree();
 		
 		Database::instance()->enableForeignKeyCheck();
+		
+		Module_Forum::instance()->saveConfigVar('forum_root', '13');
 	}
 	
 	public function importForumBoards()
