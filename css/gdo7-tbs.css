@@ -152,7 +152,7 @@ div.gdo-main {
 }
 
 /** Panel **/
-.gdo-panel,
+.gdt-panel,
 .gdt-form,
 .gdt-card,
 .gdt-table,
@@ -167,10 +167,10 @@ div.gdo-main {
 	width: fit-content;
 }
 
-.gdo-panel {
+.gdt-panel {
 	text-align: justify;
 }
-.gdo-panel > p,
+.gdt-panel > p,
 .gdt-form .gdt-form-inner,
 .gdt-form p {
 	padding: 4px 8px;
@@ -185,7 +185,7 @@ div.gdo-main {
 	padding: 0 8px;
 }
 
-.gdo-panel > h3 {
+.gdt-panel > h3 {
 	color: #D00000;
 	font-weight: bold;
 	font-size: 20px;
@@ -397,7 +397,7 @@ ul.pagination li.page-selected {
 .gdt-form form textarea,
 .gdt-form .gdt-form-text,
 .gdt-form .gdt-form-actions,
-.gdt-form-inner > .gdo-panel,
+.gdt-form-inner > .gdt-panel,
 .gdt-form form .gdt-bar,
 .gdt-form form .gdt-divider,
 .gdt-form form .gdt-paragraph,
@@ -447,10 +447,11 @@ ul.pagination li.page-selected {
 	max-width: 100%;
 }
 
-button,
+/* button, */
+.gdt-submit,
+.gdt-submit xinput,
 .gdt-button,
-.gdt-iconbutton,
-input[type=submit] {
+xinput[type=submit] {
 	color: #333;
 	cursor: pointer;
 	background-color: #D4F2FD;
@@ -464,7 +465,7 @@ input[type=submit] {
 	padding: 3px 6px;
 	text-align: center;
 	text-decoration: none;
-	width: max-content;
+/* 	width: 100%; */
 }
 
 button:hover,
