@@ -29,6 +29,7 @@ use GDO\UI\GDT_Page;
 use GDO\Country\Module_Country;
 use GDO\Mail\Module_Mail;
 use GDO\HTML\Module_HTML;
+use GDO\Forum\Method\Repair;
 
 
 /**
@@ -671,6 +672,12 @@ final class TBSImport
 		Database::instance()->enableForeignKeyCheck();
 		
 		Module_Forum::instance()->saveConfigVar('forum_root', '13');
+		
+		Repair::make()->executeWithInputs(['submit'=>1], false);
+		
+		GDO_ForumPost::table()->update()
+			->set('post_message_editor="HTML"')
+			->exec();
 	}
 	
 	public function importForumBoards()
@@ -823,7 +830,7 @@ final class TBSImport
 					'post_edited' => Time::getDate($row[self::CSV_FORUM_POST_EDITED]),
 					'post_editor' => $this->convertUsernameToID($row[self::CSV_FORUM_POST_EDITOR]),
 				]);
-				$post->save();
+				$post->save(false);
 			}
 			
 		});
