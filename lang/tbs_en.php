@@ -1,6 +1,7 @@
 <?php
 namespace GDO\TBS\lang;
 return [
+	'module_tbs' => 'TBS',
     # Meta
     'keywords' =>
         'automated scanning, security, hack, hacker, hacking, crack, cracker, '.
