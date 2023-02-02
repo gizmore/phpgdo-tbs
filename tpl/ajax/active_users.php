@@ -20,8 +20,8 @@ foreach ($users as $user)
     else
     {
         $profileLink = GDT_ProfileLink::make()->nickname()->user($user);
-        $onlineUsers .= sprintf("<div>%s<span>%s</span></div>\n",
-            $profileLink->renderCell(), $user->gdoVar('user_level'));
+        $onlineUsers .= sprintf("<div>%s<b>%s</b></div>\n",
+            $profileLink->render(), $user->gdoVar('user_level'));
     }
 }
 ?>
