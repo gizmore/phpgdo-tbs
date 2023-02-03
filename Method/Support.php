@@ -2,8 +2,12 @@
 namespace GDO\TBS\Method;
 
 use GDO\UI\MethodPage;
-use GDO\Core\Website;
+use GDO\Core\CSS;
 
+/**
+ * Show support us page.
+ * @author gizmore
+ */
 final class Support extends MethodPage
 {
     public function getMethodTitle() : string
@@ -26,7 +30,7 @@ final class Support extends MethodPage
             list-style-image:url({$webroot}GDO/TBS/images/misc/bullet1.gif);
         }
         END;
-        Website::addInlineCSS($css);
+        CSS::addInline($css);
     }
     
 }
