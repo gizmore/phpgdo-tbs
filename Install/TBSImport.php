@@ -210,7 +210,7 @@ final class TBSImport
 	public function import(array $config)
 	{
 		set_time_limit(60 * 60 * 2); # 120 minutes should be enough.
-		ini_set('memory_limit', '256MB');
+		ini_set('memory_limit', '256M');
 		
 		if ($config['import_users'])
 		{
