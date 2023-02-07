@@ -154,7 +154,9 @@ Use !help to get more information.
     'link_tbs_import' => 'Import',
     'tbs_importer_done' => 'Importer finished with not too much errors :) Next you should recalculate scores. Then forum-repair and we are done.',
     'tbs_import_info' => 'Put the TBS.db file into GDO/TBS/INPUT/<br/>Create a dir GDO/TBS/INPUT/CSV<br/>Run GDO/TBS/bin/sqlite2csv.sh<br/>Start this importer.',
-    # Challenge page
+	'err_cronjob_disable' => 'The cronjob module was enabled which causes havoc. I have disabled the cronjob module. Wait one minute, then try again.',
+    
+# Challenge page
     'challenges' => 'Challenges',
     
     ## Welcome PM

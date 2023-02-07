@@ -11,6 +11,7 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Core\GDT_Checkbox;
 use GDO\DB\Database;
 use GDO\TBS\Install\TBSImport;
+use GDO\Cronjob\Module_Cronjob;
 
 /**
  * Import data from the INPUT/ folder.
@@ -47,6 +48,11 @@ final class ImportRealTBS extends MethodForm
 				GDO_DB_DEBUG
 			]);
 		}
+		if (module_enabled('Cronjob'))
+		{
+			Module_Cronjob::instance()->saveVar('module_enabled', '0');
+			return $this->message('err_cronjob_disable');
+		}
 		return parent::execute();
 	}
 
@@ -74,6 +80,7 @@ final class ImportRealTBS extends MethodForm
 		finally
         {
 			Database::instance()->enableForeignKeyCheck();
+			Module_Cronjob::instance()->saveVar('module_enabled', '1');
 		}
 		return $this->message('tbs_importer_done');
 	}

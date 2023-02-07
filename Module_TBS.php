@@ -80,6 +80,7 @@ final class Module_TBS extends GDO_Module
 			'Classic',
 			'Country',
 			'Contact',
+			'Cronjob',
 			'CSS',
 			'Favicon',
 			'FontAwesome',
