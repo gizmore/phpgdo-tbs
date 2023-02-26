@@ -176,7 +176,7 @@ final class Module_TBS extends GDO_Module
 				->notNull()
 				->noacl(),
 			GDT_Url::make('tbs_website')->allowExternal(),
-			GDT_TBS_ChallengeCategory::make('tbs_category'),
+			GDT_TBS_ChallengeCategory::make('tbs_category')->emptyInitial('tbs_category'),
 		];
 	}
 
@@ -308,9 +308,10 @@ final class Module_TBS extends GDO_Module
 
 	private function addContactCSS()
 	{
+		$dir = $this->wwwPath();
 		$css = <<<END
         dt {
-          background-image: url('/files/images/backgrounds/headline2.png');
+          background-image: url('{$dir}images/backgrounds/headline2.png');
           background-color: #911501;
           color:#FFF;
           font-family: "Georgia", "Times New Roman", serif;
