@@ -75,6 +75,7 @@ Use !help to get more information.
     'link_tbs_contact' => 'Contact/FAQ',
     'link_tbs_logout' => 'Logout',
     'link_tbs_admin' => 'Administration',
+	'link_tbs_login' => 'Login',
     
     # Vuln code
     'mt_tbs_vulnerablecode' => 'Vulnerable Code',
