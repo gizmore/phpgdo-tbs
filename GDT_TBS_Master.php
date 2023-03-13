@@ -5,6 +5,9 @@ use GDO\UI\GDT_Container;
 use GDO\User\GDO_User;
 use GDO\Core\GDO;
 
+/**
+ * A site master icon.
+ */
 final class GDT_TBS_Master extends GDT_Container
 {
     protected function __construct()
@@ -13,14 +16,14 @@ final class GDT_TBS_Master extends GDT_Container
         $this->horizontal();
     }
     
-    public function gdo(GDO $gdo=null)
+    public function gdo(GDO $gdo=null): self
     {
         $this->removeFields();
         $this->addMasterIcons($gdo);
         return parent::gdo($gdo);
     }
     
-    private function addMasterIcons(GDO_User $user)
+    private function addMasterIcons(GDO_User $user): void
     {
         foreach (GDT_TBS_ChallengeCategory::$CATS as $cat)
         {

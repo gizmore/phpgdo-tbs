@@ -2,6 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDT;
+use GDO\DB\Cache;
 use GDO\Statistics\GDO_Statistic;
 use GDO\UI\GDT_Image;
 use GDO\User\GDO_User;
@@ -16,23 +17,38 @@ use GDO\OnlineUsers\GDT_OnlineUsers;
  * Chall counter.
  * 
  * @author gizmore
- * @version 7.0.1
+ * @version 7.0.2
  * @since 6.10.0
  */
 final class GDT_TBS_TopBar extends GDT
 {
 	public function getMemberCount() : int
 	{
+		static $cache;
+		if ($cache === null)
+		{
+			$key = 'tbs_membercount';
+			if (null === ($cache = Cache::get($key)))
+			{
+				$cache = $this->queryMemberCount();
+				Cache::set($key, $cache);
+			}
+		}
+		return $cache;
+	}
+
+	private function queryMemberCount() : int
+	{
 		return GDO_User::table()->countWhere('user_type="member"');
 	}
-	
+
     public function renderHTML() : string
     {
         $mo = Module_TBS::instance();
 
         $html = "<div id=\"tbs_top_bar\">\n";
         
-        $countViews = GDO_Statistic::totalHits();
+        $countViews = GDO_Statistic::simpleHitsTotal();
         $countChalls = GDO_TBS_Challenge::getChallengeCount();
         $countUsers = $this->getMemberCount();
         $countOnline = GDT_OnlineUsers::getOnlineUsers();

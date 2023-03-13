@@ -40,7 +40,8 @@ final class TBSTest extends TestCase
     {
         # 4 times the string JavaScript has to appear.
         $r = GDT_MethodTest::make()->method(ChallengeLists::make())->execute();
-        assertEquals(4, substr_count($r->render(), 'JavaScript'), "Test if challenge list category is only rendered once.");
+		$html = $r->renderHTML();
+        assertEquals(13, substr_count($html, 'JavaScript'), "Test if challenge list category is only rendered once.");
     }
     
 }

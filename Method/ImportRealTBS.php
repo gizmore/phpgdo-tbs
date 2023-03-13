@@ -12,6 +12,7 @@ use GDO\Core\GDT_Checkbox;
 use GDO\DB\Database;
 use GDO\TBS\Install\TBSImport;
 use GDO\Cronjob\Module_Cronjob;
+use GDO\Core\Method\ClearCache;
 
 /**
  * Import data from the INPUT/ folder.
@@ -23,6 +24,11 @@ use GDO\Cronjob\Module_Cronjob;
 final class ImportRealTBS extends MethodForm
 {
 	use MethodAdmin;
+
+	public function isTrivial(): bool
+	{
+		return false;
+	}
 
 	public function isTransactional(): bool
 	{
@@ -51,6 +57,7 @@ final class ImportRealTBS extends MethodForm
 		if (module_enabled('Cronjob'))
 		{
 			Module_Cronjob::instance()->saveVar('module_enabled', '0');
+			ClearCache::make()->execute();
 			return $this->message('err_cronjob_disable');
 		}
 		return parent::execute();

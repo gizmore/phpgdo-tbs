@@ -156,7 +156,8 @@ Use !help to get more information.
     'tbs_importer_done' => 'Importer finished with not too much errors :) Next you should recalculate scores. Then forum-repair and we are done.',
     'tbs_import_info' => 'Put the TBS.db file into GDO/TBS/INPUT/<br/>Create a dir GDO/TBS/INPUT/CSV<br/>Run GDO/TBS/bin/sqlite2csv.sh<br/>Start this importer.',
 	'err_cronjob_disable' => 'The cronjob module was enabled which causes havoc. I have disabled the cronjob module. Wait one minute, then try again.',
-    
+	'err_db_debug_level_too_high' => 'Your database debug level is too high to run such an import.',
+	
 # Challenge page
     'challenges' => 'Challenges',
     
@@ -191,4 +192,13 @@ Bye, TheBlacksheep and Erik :-)",
     'msg_tbs_migrate_recovery' => 'You may now choose a password on tbs.wechall.net!',
     'err_tbs_migrate_not_needed' => 'This account is already migrated and should work. If you need to change your password, try the recovery function.',
 	'tbs_category' => 'Favorite Category',
+
+	# Admin
+	'mt_tbs_admin' => 'Admin',
+
+	# Validatemail
+	'mt_tbs_wc_validateuser' => 'Validate Account',
+
+	# Solve
+	'mt_tbs_solve' => 'Send Answer',
 ];

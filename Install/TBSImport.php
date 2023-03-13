@@ -242,6 +242,11 @@ final class TBSImport
 			$this->importPermissionsFromChallSolved();
 		}
 		
+		if ($config['import_forum'])
+		{
+			Repair::make()->execute();
+		}
+		
 		# Clear cache for user permissions and maybe other things.
 		ClearCache::make()->clearCache();
 	}
