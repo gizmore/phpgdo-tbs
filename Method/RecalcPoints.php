@@ -36,7 +36,7 @@ final class RecalcPoints extends MethodForm
     public function formValidated(GDT_Form $form)
     {
         set_time_limit(60*60);
-		ini_set('memory_limit', '512MB');
+		ini_set('memory_limit', '512M');
         GDO_TBS_ChallengeSolvedCategory::updateUsers();
         return $this->message('tbs_msg_recalced');
     }
