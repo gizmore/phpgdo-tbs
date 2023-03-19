@@ -44,7 +44,7 @@ final class GDT_TBS_ChallengeCategory extends GDT_Enum
         '/dev/null' => '#00ffff',
     ];
     
-    public function defaultLabel() : self { return $this->label('category'); }
+    public function defaultLabel(): static { return $this->label('category'); }
     
     public function __construct()
     {

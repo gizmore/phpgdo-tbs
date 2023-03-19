@@ -9,7 +9,7 @@ use GDO\Core\GDT_UInt;
 final class GDT_TBS_ChallID extends GDT_UInt
 {
 
-    public static function make(string $name=null): self
+    public static function make(string $name=null): static
     {
         $obj = parent::make($name);
         $obj->labelNone();

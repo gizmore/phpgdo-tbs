@@ -15,7 +15,7 @@ final class GDT_TBS_ChallTitle extends GDT_String
 {
 	use WithGDO;
 	
-    public function defaultLabel() : self { return $this->label('name'); }
+    public function defaultLabel(): static { return $this->label('name'); }
     
     private GDT_ProfileLink $creator;
     

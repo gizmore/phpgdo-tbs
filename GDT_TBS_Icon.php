@@ -11,7 +11,7 @@ use GDO\Core\GDT;
 final class GDT_TBS_Icon extends GDT
 {
     public string $iconName;
-    public function iconName(string $iconName): self
+    public function iconName(string $iconName): static
     {
         $this->iconName = $iconName;
 		return $this;
