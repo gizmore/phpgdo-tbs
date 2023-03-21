@@ -6,14 +6,15 @@ use GDO\Core\GDT_Template;
 
 /**
  * The sidebar online users at the bottom left.
- * 
+ *
  * @author gizmore
  */
 final class GDT_TBS_Online extends GDT
 {
-    public function renderHTML() : string
-    {
-        return GDT_Template::php('TBS', 'ajax/active_users.php');
-    }
-    
+
+	public function renderHTML(): string
+	{
+		return GDT_Template::php('TBS', 'ajax/active_users.php');
+	}
+
 }

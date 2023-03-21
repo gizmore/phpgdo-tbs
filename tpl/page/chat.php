@@ -1,6 +1,7 @@
 <?php
-use GDO\UI\GDT_Panel;
+
 use GDO\UI\GDT_Button;
+use GDO\UI\GDT_Panel;
 
 $panel = GDT_Panel::make('chat_panel');
 $panel->title('tbs_chat_title');

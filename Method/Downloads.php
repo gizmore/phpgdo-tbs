@@ -5,9 +5,10 @@ use GDO\UI\MethodPage;
 
 final class Downloads extends MethodPage
 {
-	public function getMethodTitle() : string
+
+	public function getMethodTitle(): string
 	{
 		return t('tbs_downloads');
 	}
-    
+
 }

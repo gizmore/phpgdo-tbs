@@ -10,22 +10,24 @@ use GDO\Core\GDT;
  */
 final class GDT_TBS_Icon extends GDT
 {
-    public string $iconName;
-    public function iconName(string $iconName): static
-    {
-        $this->iconName = $iconName;
-		return $this;
-    }
 
-    public function render()
-    {
-        return $this->renderCell();
-    }
-    
-    public function renderCell(): string
-    {
-        $path = Module_TBS::instance()->wwwPath("img/sidebar/{$this->iconName}.gif");
-        return sprintf("<img src=\"%s\" />\n", $path);
-    }
-    
+	public string $iconName;
+
+	public function iconName(string $iconName): self
+	{
+		$this->iconName = $iconName;
+		return $this;
+	}
+
+	public function render()
+	{
+		return $this->renderCell();
+	}
+
+	public function renderCell(): string
+	{
+		$path = Module_TBS::instance()->wwwPath("img/sidebar/{$this->iconName}.gif");
+		return sprintf("<img src=\"%s\" />\n", $path);
+	}
+
 }

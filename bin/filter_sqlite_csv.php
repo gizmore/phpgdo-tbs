@@ -1,5 +1,6 @@
 <?php
 namespace GDO\TBS\bin;
+
 /**
  * @var array $argv
  */
@@ -13,7 +14,7 @@ file_put_contents($out, $filtered);
  * This filters the output of sqlite3 exports.
  * SQLite does "" for "
  */
-function filter(string $line) : string
+function filter(string $line): string
 {
 	$len = strlen($line);
 	$i = 0;
@@ -27,7 +28,7 @@ function filter(string $line) : string
 			case '\\':
 				# simply skip escaped chars... really correct?! Oo
 				break;
-			
+
 			case '"':
 				if ($par)
 				{
@@ -48,11 +49,10 @@ function filter(string $line) : string
 					$par = 1;
 				}
 				break;
-				
+
 			default:
 				$out .= $c;
 				break;
-				
 		}
 	}
 	return $out;

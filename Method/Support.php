@@ -1,24 +1,26 @@
 <?php
 namespace GDO\TBS\Method;
 
-use GDO\UI\MethodPage;
 use GDO\Core\CSS;
+use GDO\UI\MethodPage;
 
 /**
  * Show support us page.
+ *
  * @author gizmore
  */
 final class Support extends MethodPage
 {
-    public function getMethodTitle() : string
-    {
-    	return t('tbs_support');
-    }
-    
-    public function onMethodInit()
-    {
-        $webroot = GDO_WEB_ROOT;
-        $css = <<<END
+
+	public function getMethodTitle(): string
+	{
+		return t('tbs_support');
+	}
+
+	public function onMethodInit()
+	{
+		$webroot = GDO_WEB_ROOT;
+		$css = <<<END
         p.contribs {
             margin: 5px 10px 0px 10px;
             text-align: justify;
@@ -30,7 +32,7 @@ final class Support extends MethodPage
             list-style-image:url({$webroot}GDO/TBS/images/misc/bullet1.gif);
         }
         END;
-        CSS::addInline($css);
-    }
-    
+		CSS::addInline($css);
+	}
+
 }

@@ -4,20 +4,18 @@ Revival of the
 [bright-shadows.net](http://bright-shadows.net/index2.php)
 website as a GDOv7 module.
 
-Currently this site is available under 
+Currently this site is available under
 [tbs.wechall.net](https://tbs.wechall.net)
-    
+
 Please note that it is a phpgdo demo site with a custom theme.
 Some of the unit tests should be run on a complete gdo test suite.
-If you want to contribute, please try to install this  site on your dev machine.
-
+If you want to contribute, please try to install this site on your dev machine.
 
 ## phpgdo-tbs: Install
 
 To see how to setup a phpgdo site,
 please consult the
 [GDO7_INSTALLATION.md](https://github.com/gizmore/phpgdo/blob/main/DOCS/GDO7_INSTALLATION.md)
- 
 
 For CLI try this:
 
@@ -28,13 +26,11 @@ For CLI try this:
     ./gdoadm.sh admin username password
     ./gdo_yarn.sh
 
-
 ### phpgdo-tbs: Crawl TBS
 
 To crawl TBS for INPUT/ run the following commands from the /GDO/TBS/bin/ folder. (thx Xaav)
 
     # todo
-    
 
 ### phpgdo-tbs: Install crawled backup
 
@@ -45,13 +41,11 @@ To crawl TBS for INPUT/ run the following commands from the /GDO/TBS/bin/ folder
 As Admin run the importer in TBS admin section.
 An import will take a while. Approx. 20Min.
 
-
 ### Add hidden chall files
 
 The importer merges the folders DUMP/challenges and HIDDEN/ into challenges/
 If you wanna help with importing challenges you can take a look at
-@TODO: Add a few demo files to DUMP/challenges/ 
-
+@TODO: Add a few demo files to DUMP/challenges/
 
 #### License
 
@@ -59,8 +53,6 @@ This module and it's content is licensed, and dedicated , to Erik and TBS(TheBla
 
 TBS is where i learned a lot of IT skills. THX!
 
-
 #### Work in Progress
 
 Please note that this is work in progress.
-

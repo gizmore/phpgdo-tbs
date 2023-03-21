@@ -1,14 +1,15 @@
 <?php
 namespace GDO\TBS\Method;
 
-use GDO\Core\Method;
 use GDO\Admin\MethodAdmin;
+use GDO\Core\Method;
 use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Page;
 
 final class Admin extends Method
 {
-    use MethodAdmin;
+
+	use MethodAdmin;
 
 	/**
 	 * Before execute we add the top tabs.
@@ -19,12 +20,10 @@ final class Admin extends Method
 	{
 		$this->renderAdminBar();
 		GDT_Page::instance()->topResponse()->addField(
-                Module_TBS::instance()->barAdminTabs()
-            );
-    }
-    
-    public function execute()
-    {
-    }
-    
+			Module_TBS::instance()->barAdminTabs()
+		);
+	}
+
+	public function execute() {}
+
 }

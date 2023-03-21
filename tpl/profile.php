@@ -1,3 +1,1 @@
-<?phpuse GDO\User\GDO_User;
-use GDO\TBS\Method\ChallengeLists;/** @var $user GDO_User **/$_REQUEST['user'] = $user->getID();
-ChallengeLists::make()->execute();
+<?phpuse GDO\TBS\Method\ChallengeLists;use GDO\User\GDO_User;/** @var $user GDO_User * */$_REQUEST['user'] = $user->getID();ChallengeLists::make()->execute();

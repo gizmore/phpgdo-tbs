@@ -5,9 +5,10 @@ use GDO\UI\MethodPage;
 
 final class Welcome extends MethodPage
 {
-    public function getMethodTitle() : string
-    {
-    	return t('tbs_welcome_title');
-    }
-    
+
+	public function getMethodTitle(): string
+	{
+		return t('tbs_welcome_title');
+	}
+
 }

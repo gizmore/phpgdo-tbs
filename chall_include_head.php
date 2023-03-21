@@ -1,17 +1,18 @@
 <?php
+
+use GDO\Core\Application;
+use GDO\Core\Debug;
+use GDO\Core\Logger;
+use GDO\Core\ModuleLoader;
+use GDO\Core\Website;
 use GDO\DB\Database;
 use GDO\Language\Trans;
 use GDO\Session\GDO_Session;
 use GDO\TBS\GDO_TBS_Challenge;
-use GDO\Core\Debug;
-use GDO\Core\Logger;
-use GDO\Core\ModuleLoader;
-use GDO\Core\Application;
-use GDO\User\GDO_User;
 use GDO\UI\GDT_Error;
-use GDO\Core\Website;
+use GDO\User\GDO_User;
 
-require "GDO6.php";
+require 'GDO6.php';
 require 'protected/config.php';
 
 Database::init();
@@ -30,20 +31,20 @@ Debug::setDieOnError(GDO_ERROR_DIE);
 Debug::setMailOnError(GDO_ERROR_MAIL);
 GDO_Session::instance();
 ?>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 <head>
-<title>TBS Challenge</title>
-<?=Website::displayHead()?>
-<?=Website::displayMeta()?>
-<?=Website::displayLink()?>
+    <title>TBS Challenge</title>
+	<?=Website::displayHead()?>
+	<?=Website::displayMeta()?>
+	<?=Website::displayLink()?>
 </head>
 <?php
 if (!GDO_User::current()->isMember())
 {
-    echo GDT_Error::responseWith('err_members_only')->render();
+	echo GDT_Error::responseWith('err_members_only')->render();
 }
 else
 {
-    $chall = GDO_TBS_Challenge::getChallenge(TBS_CHALL_CATEGORY, TBS_CHALL_TITLE);
+	$chall = GDO_TBS_Challenge::getChallenge(TBS_CHALL_CATEGORY, TBS_CHALL_TITLE);
 }

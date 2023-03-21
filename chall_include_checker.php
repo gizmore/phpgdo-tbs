@@ -1,14 +1,15 @@
 <?php
-use GDO\Language\Trans;
-use GDO\Session\GDO_Session;
-use GDO\TBS\GDO_TBS_Challenge;
-use GDO\Util\Strings;
+
+use GDO\Core\Application;
 use GDO\Core\Debug;
 use GDO\Core\GDO_Error;
 use GDO\Core\Logger;
 use GDO\Core\ModuleLoader;
 use GDO\DB\Database;
-use GDO\Core\Application;
+use GDO\Language\Trans;
+use GDO\Session\GDO_Session;
+use GDO\TBS\GDO_TBS_Challenge;
+use GDO\Util\Strings;
 
 chdir($_SERVER['DOCUMENT_ROOT']);
 require 'GDO6.php';
@@ -17,7 +18,7 @@ require 'protected/config.php';
 Database::init();
 new ModuleLoader(GDO_PATH . 'GDO/');
 GDO_Session::init(GDO_SESS_NAME, GDO_SESS_DOMAIN, GDO_SESS_TIME, !GDO_SESS_JS, GDO_SESS_HTTPS);
-new Application();
+Application::make();
 ModuleLoader::instance()->loadModulesCache();
 
 # Bootstrap
@@ -30,17 +31,17 @@ Debug::setDieOnError(GDO_ERROR_DIE);
 Debug::setMailOnError(GDO_ERROR_MAIL);
 GDO_Session::instance();
 ?>
-<div>Solution checker active</div>
+    <div>Solution checker active</div>
 <?php
-if ( ($solution = @$_REQUEST['solution']) && (@$_REQUEST['button_submit']) )
+if (($solution = @$_REQUEST['solution']) && (@$_REQUEST['button_submit']))
 {
-    $url = $_SERVER['SCRIPT_FILENAME'];
-    $url = Strings::substrFrom($url, '/GDO/TBS');
-    $challenge = GDO_TBS_Challenge::getByURL($url);
-    if (!$challenge)
-    {
-        throw new GDO_Error('err_tbs_challenge');
-    }
-    
-    $challenge->onSolve($solution);
+	$url = $_SERVER['SCRIPT_FILENAME'];
+	$url = Strings::substrFrom($url, '/GDO/TBS');
+	$challenge = GDO_TBS_Challenge::getByURL($url);
+	if (!$challenge)
+	{
+		throw new GDO_Error('err_tbs_challenge');
+	}
+
+	$challenge->onSolve($solution);
 }

@@ -1,10 +1,11 @@
 <?php
+
+use GDO\OnlineUsers\Method\ViewOnline;
+use GDO\Statistics\GDO_Statistic;
 use GDO\TBS\GDO_TBS_Challenge;
 use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Image;
 use GDO\User\GDO_User;
-use GDO\OnlineUsers\Method\ViewOnline;
-use GDO\Statistics\GDO_Statistic;
 
 echo "<div id=\"tbs_top_bar\">\n";
 
@@ -38,9 +39,9 @@ echo "<th>{$users}: </th><td>{$countUsers}</td>\n";
 echo "<th>{$online}: </th><td>{$countOnline}</td>\n";
 echo "</tr>\n";
 
-echo "</tbody>";
-echo "</table>";
+echo '</tbody>';
+echo '</table>';
 
-echo "</div>";
+echo '</div>';
 echo "<div style=\"clear: both;\"></div>\n";
-echo "</div>";
+echo '</div>';

@@ -5,7 +5,7 @@ use GDO\Core\Method;
 
 final class Solve extends Method
 {
-    public function execute()
-    {}
-    
+
+	public function execute() {}
+
 }

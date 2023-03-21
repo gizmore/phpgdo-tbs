@@ -1,29 +1,29 @@
 <?php
 namespace GDO\TBS;
 
-use GDO\Contact\Method\Form;
-use GDO\Core\GDO_Module;
 use GDO\Classic\Module_Classic;
+use GDO\Contact\Method\Form;
+use GDO\Core\Application;
+use GDO\Core\CSS;
+use GDO\Core\GDO_Module;
+use GDO\Core\GDT_Checkbox;
+use GDO\Core\GDT_Response;
+use GDO\Core\GDT_Secret;
+use GDO\Core\GDT_Template;
+use GDO\Core\GDT_UInt;
+use GDO\Core\Method;
+use GDO\Date\GDT_Duration;
+use GDO\DB\Query;
+use GDO\Net\GDT_Url;
 use GDO\Register\GDO_UserActivation;
 use GDO\TBS\Install\InstallTBS;
 use GDO\UI\GDT_Bar;
-use GDO\UI\GDT_Link;
-use GDO\User\GDO_User;
-use GDO\Date\GDT_Duration;
-use GDO\Core\GDT_UInt;
-use GDO\Core\GDT_Checkbox;
-use GDO\Net\GDT_Url;
 use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Container;
-use GDO\DB\Query;
-use GDO\Votes\Module_Votes;
-use GDO\Core\GDT_Secret;
-use GDO\Core\Method;
-use GDO\Core\GDT_Template;
-use GDO\Core\GDT_Response;
+use GDO\UI\GDT_Link;
+use GDO\User\GDO_User;
 use GDO\User\GDT_ACLRelation;
-use GDO\Core\CSS;
-use GDO\Core\Application;
+use GDO\Votes\Module_Votes;
 
 /**
  * TBS Website Revival as phpgdo7 module.
@@ -33,9 +33,9 @@ use GDO\Core\Application;
  *
  * @TODO BBDecoder in Module_TBSBBMessage
  * @TODO Create a new challenge \o/
- * 
- * @author gizmore
+ *
  * @version 7.0.2
+ * @author gizmore
  * @license Property of Erik and TBS
  */
 final class Module_TBS extends GDO_Module
@@ -128,31 +128,6 @@ final class Module_TBS extends GDO_Module
 		];
 	}
 
-	public function cfgSolveTimeout()
-	{
-		return $this->getConfigValue('chall_solve_timeout');
-	}
-
-	public function cfgSolveAttempts()
-	{
-		return $this->getConfigVar('chall_solve_attempts');
-	}
-
-	public function cfgSolveUser()
-	{
-		return $this->getConfigVar('chall_solver_user');
-	}
-
-	public function cfgSolvePass()
-	{
-		return $this->getConfigVar('chall_solver_pass');
-	}
-
-	public function cfgXAuthKey()
-	{
-		return $this->getConfigVar('tbs_xauth_key');
-	}
-
 	public function getACLDefaults(): array
 	{
 		return [
@@ -180,14 +155,6 @@ final class Module_TBS extends GDO_Module
 		];
 	}
 
-	public function tutorialWWWPath(): string
-	{
-		return $this->wwwPath('tutorials/');
-	}
-
-	# ###########
-	# ## Init ###
-	# ###########
 	public function onInstall(): void
 	{
 		InstallTBS::onInstall();
@@ -203,9 +170,64 @@ final class Module_TBS extends GDO_Module
 		}
 	}
 
+	/**
+	 * Ignore these folders in documentation, code statistics, etc.
+	 * Those are usally 3rd party libraries or data folders, and they default to npm/yarn/composer deployment folders.
+	 */
+	public function thirdPartyFolders(): array
+	{
+		return [
+			'bin/',
+			'challenges/',
+			'downloads/',
+			'DUMP/',
+			'HIDDEN/',
+			'HIDDEN_EXAMPLE/',
+			'INPUT/',
+			'scripts/',
+			'tutorials/',
+			'vulnerable_code/',
+		];
+	}
+
+	public function cfgSolveTimeout()
+	{
+		return $this->getConfigValue('chall_solve_timeout');
+	}
+
+	public function cfgSolveAttempts()
+	{
+		return $this->getConfigVar('chall_solve_attempts');
+	}
+
+	public function cfgSolveUser()
+	{
+		return $this->getConfigVar('chall_solver_user');
+	}
+
+	# ###########
+	# ## Init ###
+	# ###########
+
+	public function cfgSolvePass()
+	{
+		return $this->getConfigVar('chall_solver_pass');
+	}
+
+	public function cfgXAuthKey()
+	{
+		return $this->getConfigVar('tbs_xauth_key');
+	}
+
 	# #############
 	# ## Render ###
 	# #############
+
+	public function tutorialWWWPath(): string
+	{
+		return $this->wwwPath('tutorials/');
+	}
+
 	/**
 	 * Get TBS Admin Section tabs.
 	 */
@@ -219,6 +241,10 @@ final class Module_TBS extends GDO_Module
 		return $tabs;
 	}
 
+	# ############
+	# ## Hooks ###
+	# ############
+
 	public function rawIcon($path, $title = '')
 	{
 		$path = $this->wwwPath("images/{$path}");
@@ -226,9 +252,6 @@ final class Module_TBS extends GDO_Module
 		return sprintf('<img%s src="%s" alt="icon" />', $title, $path);
 	}
 
-	# ############
-	# ## Hooks ###
-	# ############
 	/**
 	 * Add fields to profile card.
 	 */
@@ -241,7 +264,7 @@ final class Module_TBS extends GDO_Module
 	public function hookProfileTemplate(GDO_User $user)
 	{
 		echo $this->php('profile.php', [
-			'user' => $user
+			'user' => $user,
 		]);
 	}
 
@@ -274,29 +297,10 @@ final class Module_TBS extends GDO_Module
 		GDO_TBS_ChallengeSolvedCategory::updateUser($user);
 	}
 
-	/**
-	 * Ignore these folders in documentation, code statistics, etc.
-	 * Those are usally 3rd party libraries or data folders, and they default to npm/yarn/composer deployment folders.
-	 */
-	public function thirdPartyFolders(): array
-	{
-		return [
-			'bin/',
-			'challenges/',
-			'downloads/',
-			'DUMP/',
-			'HIDDEN/',
-			'HIDDEN_EXAMPLE/',
-			'INPUT/',
-			'scripts/',
-			'tutorials/',
-			'vulnerable_code/'
-		];
-	}
-
 	# #########################
 	# ## Contact Form Hooks ###
 	# #########################
+
 	public function hookBeforeExecute(Method $method, GDT_Response $response)
 	{
 		if ($method instanceof Form)
