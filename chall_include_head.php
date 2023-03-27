@@ -12,13 +12,13 @@ use GDO\TBS\GDO_TBS_Challenge;
 use GDO\UI\GDT_Error;
 use GDO\User\GDO_User;
 
-require 'GDO6.php';
+require 'GDO7.php';
 require 'protected/config.php';
 
 Database::init();
 new ModuleLoader(GDO_PATH . 'GDO/');
 GDO_Session::init(GDO_SESS_NAME, GDO_SESS_DOMAIN, GDO_SESS_TIME, !GDO_SESS_JS, GDO_SESS_HTTPS);
-new Application();
+Application::init();
 ModuleLoader::instance()->loadModulesCache();
 
 # Bootstrap

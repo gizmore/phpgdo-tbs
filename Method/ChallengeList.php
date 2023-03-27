@@ -24,11 +24,11 @@ final class ChallengeList extends MethodTable
 
 	public function gdoTable(): GDO { return GDO_TBS_Challenge::table(); }
 
-	public function isPaginated() { return false; }
+	public function isPaginated(): bool { return false; }
 
-	public function isFiltered() { return false; }
+	public function isFiltered(): bool { return false; }
 
-	public function isGuestAllowed(): bool { return false; }
+	public function isGuestAllowed(): string { return false; }
 
 	public function getDefaultOrder(): ?string { return 'chall_order'; }
 
@@ -89,7 +89,7 @@ final class ChallengeList extends MethodTable
 		return new ArrayResult($all, GDO_TBS_Challenge::table());
 	}
 
-	public function setupTitle(GDT_Table $table)
+	public function setupTitle(GDT_Table $table): void
 	{
 		$table->name($this->getCategory());
 		$user = $this->getUser();

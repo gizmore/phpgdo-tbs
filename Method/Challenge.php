@@ -1,6 +1,7 @@
 <?php
 namespace GDO\TBS\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\Method;
 use GDO\TBS\GDO_TBS_Challenge;
 use GDO\TBS\GDT_TBS_Challenge;
@@ -15,7 +16,7 @@ use GDO\TBS\GDT_TBS_Challenge;
 final class Challenge extends Method
 {
 
-	public function isGuestAllowed(): bool { return false; }
+	public function isGuestAllowed(): string { return false; }
 
 	public function gdoParameters(): array
 	{
@@ -24,7 +25,7 @@ final class Challenge extends Method
 		];
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$challenge = $this->getChallenge();
 		return $this->templatePHP('challenge.php', [

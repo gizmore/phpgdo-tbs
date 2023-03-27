@@ -42,7 +42,7 @@ final class Migrate extends MethodForm
 		return t('tbs_account_migration_title');
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		if ($token = Common::getRequestString('token'))
 		{
@@ -108,7 +108,7 @@ final class Migrate extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$user = $form->getFormValue('tbs_user');
 		$tbs = $user->gdoVar('user_name');

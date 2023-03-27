@@ -2,6 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
+use GDO\Core\GDT;
 use GDO\Core\GDT_UInt;
 use GDO\User\GDO_User;
 
@@ -13,8 +14,10 @@ use GDO\User\GDO_User;
 final class GDT_TBS_Rank extends GDT_UInt
 {
 
-	public $rank = 1;
-	public $startRank = 1;
+	public int $rank = 1;
+	public int $startRank = 1;
+
+	public bool $searchable = false;
 
 	public static function getRankForUser(GDO_User $user)
 	{
@@ -28,7 +31,7 @@ final class GDT_TBS_Rank extends GDT_UInt
 		return $this;
 	}
 
-	public function gdo(GDO $gdo = null): self
+	public function gdo(?GDO $gdo): GDT
 	{
 		$this->var($this->rank++);
 		return $this;

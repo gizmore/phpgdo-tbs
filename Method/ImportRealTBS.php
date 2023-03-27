@@ -2,6 +2,7 @@
 namespace GDO\TBS\Method;
 
 use GDO\Admin\MethodAdmin;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Checkbox;
 use GDO\Core\Method\ClearCache;
 use GDO\Cronjob\Module_Cronjob;
@@ -37,7 +38,7 @@ final class ImportRealTBS extends MethodForm
 		return false;
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		if (GDO_DB_DEBUG)
 		{
@@ -64,7 +65,7 @@ final class ImportRealTBS extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$importer = new TBSImport();
 		try

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\TBS\Method;
 
 use GDO\Core\GDO;
@@ -28,7 +29,7 @@ final class Ranking extends MethodQueryTable
 
 	public function isOrdered(): bool { return false; }
 
-	public function isFiltered() { return false; }
+	public function isFiltered(): bool { return false; }
 
 	public function getDefaultOrder(): ?string { return 'user_level DESC'; }
 
@@ -51,7 +52,7 @@ final class Ranking extends MethodQueryTable
 		where('user_type="member"');
 	}
 
-	public function gdoFetchAs() { return GDO_User::table(); }
+	public function gdoFetchAs(): GDO { return GDO_User::table(); }
 
 	public function gdoHeaders(): array
 	{

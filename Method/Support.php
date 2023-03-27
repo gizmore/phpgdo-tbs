@@ -2,6 +2,7 @@
 namespace GDO\TBS\Method;
 
 use GDO\Core\CSS;
+use GDO\Core\GDT;
 use GDO\UI\MethodPage;
 
 /**
@@ -17,7 +18,7 @@ final class Support extends MethodPage
 		return t('tbs_support');
 	}
 
-	public function onMethodInit()
+	public function onMethodInit(): ?GDT
 	{
 		$webroot = GDO_WEB_ROOT;
 		$css = <<<END
@@ -33,6 +34,7 @@ final class Support extends MethodPage
         }
         END;
 		CSS::addInline($css);
+		return null;
 	}
 
 }

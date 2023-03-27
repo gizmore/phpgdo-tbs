@@ -2,6 +2,7 @@
 namespace GDO\TBS\Method;
 
 use GDO\Admin\MethodAdmin;
+use GDO\Core\GDT;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
@@ -26,7 +27,7 @@ final class RecalcPoints extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		set_time_limit(60 * 60);
 		ini_set('memory_limit', '512M');

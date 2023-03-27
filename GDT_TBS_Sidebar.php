@@ -17,7 +17,7 @@ final class GDT_TBS_Sidebar extends GDT_Bar
 		parent::__construct();
 	}
 
-	public function render()
+	public function render(): array|string|null
 	{
 		return GDT_Template::php('TBS', 'left_bar.php');
 	}

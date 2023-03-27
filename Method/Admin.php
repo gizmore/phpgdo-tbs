@@ -2,11 +2,13 @@
 namespace GDO\TBS\Method;
 
 use GDO\Admin\MethodAdmin;
+use GDO\Core\GDT;
 use GDO\Core\Method;
 use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Page;
+use GDO\UI\MethodPage;
 
-final class Admin extends Method
+final class Admin extends MethodPage
 {
 
 	use MethodAdmin;
@@ -23,7 +25,5 @@ final class Admin extends Method
 			Module_TBS::instance()->barAdminTabs()
 		);
 	}
-
-	public function execute() {}
 
 }

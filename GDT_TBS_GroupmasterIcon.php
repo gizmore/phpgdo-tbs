@@ -3,6 +3,7 @@ namespace GDO\TBS;
 
 use GDO\Core\GDT;
 use GDO\Core\WithGDO;
+use GDO\DB\Query;
 use GDO\User\GDO_User;
 
 /**

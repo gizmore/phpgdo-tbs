@@ -19,7 +19,7 @@ final class GDT_TBS_Icon extends GDT
 		return $this;
 	}
 
-	public function render()
+	public function render(): array|string|null
 	{
 		return $this->renderCell();
 	}

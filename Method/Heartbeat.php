@@ -1,6 +1,7 @@
 <?php
 namespace GDO\TBS\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\GDT_JSON;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_UInt;
@@ -27,7 +28,7 @@ final class Heartbeat extends MethodAjax
 		return t('tbs_heartbeat');
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$user = GDO_User::current();
 		$pm = GDO_PM::countUnread($user);

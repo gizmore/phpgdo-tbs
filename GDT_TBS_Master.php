@@ -2,6 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
+use GDO\Core\GDT;
 use GDO\UI\GDT_Container;
 use GDO\User\GDO_User;
 
@@ -17,7 +18,7 @@ final class GDT_TBS_Master extends GDT_Container
 		$this->horizontal();
 	}
 
-	public function gdo(GDO $gdo = null): self
+	public function gdo(?GDO $gdo): GDT
 	{
 		$this->removeFields();
 		$this->addMasterIcons($gdo);

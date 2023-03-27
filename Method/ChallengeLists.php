@@ -1,6 +1,7 @@
 <?php
 namespace GDO\TBS\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
 use GDO\Core\Method;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
@@ -15,7 +16,7 @@ use GDO\User\GDT_User;
 final class ChallengeLists extends Method
 {
 
-	public function isGuestAllowed(): bool { return false; }
+	public function isGuestAllowed(): string { return false; }
 
 	public function getMethodTitle(): string { return t('link_tbs_challenges'); }
 
@@ -26,7 +27,7 @@ final class ChallengeLists extends Method
 		];
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$response = GDT_Response::make();
 

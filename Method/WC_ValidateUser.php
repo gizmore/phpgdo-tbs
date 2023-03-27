@@ -2,6 +2,7 @@
 namespace GDO\TBS\Method;
 
 use GDO\Core\Application;
+use GDO\Core\GDT;
 use GDO\Core\Method;
 use GDO\Mail\GDT_Email;
 use GDO\User\GDO_User;
@@ -31,13 +32,13 @@ final class WC_ValidateUser extends Method
 		];
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$user = $this->getUser();
 		$mail = $this->gdoParameterVar('email');
 		$code = (int)($user->getMail() === $mail);
 		echo "{$code}\n";
-		Application::exit($code);
+		return Application::exit($code);
 	}
 
 	private function getUser(): GDO_User
