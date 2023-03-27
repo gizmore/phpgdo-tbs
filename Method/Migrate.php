@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\TBS\Method;
 
 use GDO\Captcha\GDT_Captcha;
@@ -26,7 +27,7 @@ use GDO\Util\Common;
  * 2. Click link in migration mail.
  * 3. Change your password via Recovery module.
  *
- * @version 6.10.3
+ * @version 7.0.3
  * @since 6.10.2
  * @author gizmore
  */
@@ -54,7 +55,7 @@ final class Migrate extends MethodForm
 		return parent::execute();
 	}
 
-	public function onMigrate($tbs, $wechall, $email, $token)
+	public function onMigrate(string $tbs, string $wechall, string $email, string $token): GDT
 	{
 		if (!($user = GDO_User::getByLogin($tbs)))
 		{
@@ -69,11 +70,11 @@ final class Migrate extends MethodForm
 			# Initiate recovery
 			$token = GDO_UserRecovery::blank(['pw_user_id' => $user->getID()])->replace();
 			$href = href('Recovery', 'Change', "&userid={$user->getID()}&token=" . $token->getToken());
-			$this->redirectMessage('msg_tbs_migrate_recovery', null, $href);
+			return $this->redirectMessage('msg_tbs_migrate_recovery', null, $href);
 		}
 	}
 
-	public function getMigrationToken($tbs, $wechall, $email)
+	public function getMigrationToken($tbs, $wechall, $email): string
 	{
 		return $this->getMigrationCrypto($tbs, $wechall, $email);
 	}
@@ -82,7 +83,7 @@ final class Migrate extends MethodForm
 	### Crypto ###
 	##############
 
-	public function getMigrationCrypto($tbs, $wechall, $email)
+	public function getMigrationCrypto(string $tbs, string $wechall, string $email): string
 	{
 		$auth = Module_TBS::instance()->cfgXAuthKey();
 		$user = GDO_User::findBy('user_name', $tbs);
@@ -122,7 +123,9 @@ final class Migrate extends MethodForm
 				return $this->message('msg_tbs_migrate_mail_sent');
 
 			default:
-				return $this->error('err_tbs_wc_migrate', [html($response)])->addField($this->renderPage());
+				return
+					$this->error('err_tbs_wc_migrate', [html($response)])->
+					addField($this->renderPage());
 		}
 	}
 
@@ -132,13 +135,8 @@ final class Migrate extends MethodForm
 
 	/**
 	 * Build the wechall url for a migration request.
-	 *
-	 * @param string $tbs
-	 * @param string $wechall
-	 *
-	 * @return string
 	 */
-	public function getMigrationURL($tbs, $wechall, $email)
+	public function getMigrationURL(string $tbs, string $wechall, string $email): string
 	{
 		$host = 'https://www.wechall.net';
 		return sprintf(
@@ -157,9 +155,9 @@ final class Migrate extends MethodForm
 	### Step 2 ###
 	##############
 
-	public function validateAlreadyActive(GDT_Form $form, GDT $field, $value)
+	public function validateAlreadyActive(GDT_Form $form, GDT $field, $value): bool
 	{
-		/** @var $value GDO_User * */
+		/** @var GDO_User $value **/
 		if ($value && $value->gdoVar('user_password'))
 		{
 			return $field->error('err_tbs_migrate_not_needed');

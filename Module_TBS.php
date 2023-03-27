@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\TBS;
 
 use GDO\Classic\Module_Classic;
@@ -34,7 +35,7 @@ use GDO\Votes\Module_Votes;
  * @TODO BBDecoder in Module_TBSBBMessage
  * @TODO Create a new challenge \o/
  *
- * @version 7.0.2
+ * @version 7.0.3
  * @author gizmore
  * @license Property of Erik and TBS
  */
@@ -128,7 +129,7 @@ final class Module_TBS extends GDO_Module
 		];
 	}
 
-	public function getACLDefaults(): array
+	protected function getACLDefaults(): array
 	{
 		return [
 			'tbs_website' => [
@@ -190,31 +191,27 @@ final class Module_TBS extends GDO_Module
 		];
 	}
 
-	public function cfgSolveTimeout()
+	public function cfgSolveTimeout(): int
 	{
 		return $this->getConfigValue('chall_solve_timeout');
 	}
 
-	public function cfgSolveAttempts()
+	public function cfgSolveAttempts(): int
 	{
-		return $this->getConfigVar('chall_solve_attempts');
+		return $this->getConfigValue( 'chall_solve_attempts');
 	}
 
-	public function cfgSolveUser()
+	public function cfgSolveUser(): ?string
 	{
 		return $this->getConfigVar('chall_solver_user');
 	}
 
-	# ###########
-	# ## Init ###
-	# ###########
-
-	public function cfgSolvePass()
+	public function cfgSolvePass(): ?string
 	{
 		return $this->getConfigVar('chall_solver_pass');
 	}
 
-	public function cfgXAuthKey()
+	public function cfgXAuthKey(): ?string
 	{
 		return $this->getConfigVar('tbs_xauth_key');
 	}
@@ -245,7 +242,7 @@ final class Module_TBS extends GDO_Module
 	# ## Hooks ###
 	# ############
 
-	public function rawIcon($path, $title = '')
+	public function rawIcon(string $path, string $title = ''): string
 	{
 		$path = $this->wwwPath("images/{$path}");
 		$title = $title ? " title=\"{$title}\"" : $title;
@@ -255,20 +252,20 @@ final class Module_TBS extends GDO_Module
 	/**
 	 * Add fields to profile card.
 	 */
-	public function hookProfileCard(GDO_User $user, GDT_Card $card)
+	public function hookProfileCard(GDO_User $user, GDT_Card $card): void
 	{
 		$card->addField($this->userSetting($user, 'tbs_website'));
 		$card->addField($this->userSetting($user, 'tbs_ranked'));
 	}
 
-	public function hookProfileTemplate(GDO_User $user)
+	public function hookProfileTemplate(GDO_User $user): void
 	{
 		echo $this->php('profile.php', [
 			'user' => $user,
 		]);
 	}
 
-	public function hookDecoratePostUser(GDT_Card $card, GDT_Container $cont, GDO_User $user)
+	public function hookDecoratePostUser(GDT_Card $card, GDT_Container $cont, GDO_User $user): void
 	{
 		# Add likes
 		$likes = Module_Votes::instance()->userSettingVar($user, 'likes');
@@ -285,13 +282,13 @@ final class Module_TBS extends GDO_Module
 		$cont->addField($cont2);
 	}
 
-	public function hookMethodQueryTable_Forum_Thread(Query $query)
+	public function hookMethodQueryTable_Forum_Thread(Query $query): void
 	{
 		$join = 'LEFT JOIN gdo_tbs_challengesolvedcategory AS csc ON csc_user=post_creator';
 		$query->join($join);
 	}
 
-	public function hookUserActivated(GDO_User $user, GDO_UserActivation $activation = null)
+	public function hookUserActivated(GDO_User $user, GDO_UserActivation $activation = null): void
 	{
 		# Create scoring upon activation.
 		GDO_TBS_ChallengeSolvedCategory::updateUser($user);
@@ -301,7 +298,7 @@ final class Module_TBS extends GDO_Module
 	# ## Contact Form Hooks ###
 	# #########################
 
-	public function hookBeforeExecute(Method $method, GDT_Response $response)
+	public function hookBeforeExecute(Method $method, GDT_Response $response): void
 	{
 		if ($method instanceof Form)
 		{
@@ -310,7 +307,7 @@ final class Module_TBS extends GDO_Module
 		}
 	}
 
-	private function addContactCSS()
+	private function addContactCSS(): void
 	{
 		$dir = $this->wwwPath();
 		$css = <<<END
@@ -343,7 +340,7 @@ final class Module_TBS extends GDO_Module
 		CSS::addInline($css);
 	}
 
-	public function hookAfterExecute(Method $method, GDT_Response $response)
+	public function hookAfterExecute(Method $method, GDT_Response $response): void
 	{
 		if ($method instanceof Form)
 		{
