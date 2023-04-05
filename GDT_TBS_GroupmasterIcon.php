@@ -18,6 +18,11 @@ final class GDT_TBS_GroupmasterIcon extends GDT
 
 	use WithGDO;
 
+	public function isTestable(): bool
+	{
+		return false;
+	}
+
 	public $category;
 
 	public function category($category)

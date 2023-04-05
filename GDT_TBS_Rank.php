@@ -31,7 +31,7 @@ final class GDT_TBS_Rank extends GDT_UInt
 		return $this;
 	}
 
-	public function gdo(?GDO $gdo): GDT
+	public function gdo(?GDO $gdo): static
 	{
 		$this->var($this->rank++);
 		return $this;

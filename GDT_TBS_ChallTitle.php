@@ -16,6 +16,11 @@ final class GDT_TBS_ChallTitle extends GDT_String
 
 	use WithGDO;
 
+	public function isTestable(): bool
+	{
+		return false;
+	}
+
 	private GDT_ProfileLink $creator;
 
 	protected function __construct()
