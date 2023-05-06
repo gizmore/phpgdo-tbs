@@ -1,7 +1,10 @@
 <?php
+declare(strict_types=1);
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
+use GDO\Core\GDO_Error;
+use GDO\Core\GDO_Exception;
 use GDO\Core\GDT_Decimal;
 use GDO\Core\GDT_UInt;
 use GDO\DB\Query;
@@ -14,31 +17,33 @@ use GDO\User\GDT_User;
  * @TODO: convert this table into a view?
  * @TODO: on a solve it is enough to increment a single category for a single user. A challenge can only have 1 category.
  *
- * @version 6.10
+ * @version 7.0.3
  * @since 6.10
  * @author gizmore
  */
 final class GDO_TBS_ChallengeSolvedCategory extends GDO
 {
 
-	public static function updateUsers()
+	public static function updateUsers(): void
 	{
 		self::updateUsersWithHugeQuery();
 	}
 
-	private static function updateUsersWithHugeQuery()
+	private static function updateUsersWithHugeQuery(): void
 	{
 		$users = GDO_User::table()->select('user_id')->exec();
-		while ($userid = $users->fetchValue())
+		while ($userid = $users->fetchVar())
 		{
 			self::updateUserWithHugeQuery($userid);
 		}
 	}
 
-	private static function updateUserWithHugeQuery($userid)
+	/**
+	 * @throws GDO_Exception
+	 * @throws GDO_Error
+	 */
+	private static function updateUserWithHugeQuery(string $userid): void
 	{
-		$userid = (int)$userid;
-
 		$query = new Query(self::table());
 		$tableName = self::table()->gdoTableName();
 
@@ -63,8 +68,7 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 
 		# Change user_level
 		$user = GDO_User::table()->find($userid);
-		$user->setVar('user_level', (int)self::get($user)->gdoVar('csc_points'));
-		$user->save();
+		$user->saveVar('user_level', self::get($user)->gdoVar('csc_points'));
 	}
 
 	/**
@@ -81,12 +85,12 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 		$calcselect = "( SELECT COUNT(*) FROM $solvedTable st JOIN $challTable ct ON st.cs_challenge = ct.chall_id WHERE st.cs_user=$userid$whereCat ), ";
 		$calcselect .= "( SELECT COUNT(*) FROM $challTable WHERE 1$whereCat ), ";
 		$calcselect .= "( SELECT SUM(chall_score) FROM $solvedTable st JOIN $challTable ct ON st.cs_challenge = ct.chall_id WHERE st.cs_user=$userid$whereCat ), ";
-		$calcselect .= "( SELECT SUM(chall_score) FROM $challTable WHERE 1$whereCat ), ";
+		$calcselect .= "( SELECT SUM(chall_score) FROM $challTable WHERE 1{$whereCat} ), ";
 		$calcselect .= "( SELECT ( SELECT SUM(chall_score) FROM $solvedTable st JOIN $challTable ct ON st.cs_challenge = ct.chall_id WHERE st.cs_user=$userid$whereCat ) / ( SELECT SUM(chall_score) FROM $challTable WHERE 1$whereCat ) * 100.0 ), ";
 		return $calcselect;
 	}
 
-	public static function get(GDO_User $user)
+	public static function get(GDO_User $user): self
 	{
 		if (!($row = self::getById($user->getID())))
 		{
@@ -98,14 +102,13 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 		return $row;
 	}
 
-	public static function updateUser(GDO_User $user)
+	public static function updateUser(GDO_User $user): array
 	{
 		$row = self::get($user);
 		$before = $row->gdoVar('csc_points');
 		self::updateUserWithHugeQuery($user->getID());
 		$row = self::get($user);
 		$after = $row->gdoVar('csc_points');
-
 		return [$before, $after];
 	}
 

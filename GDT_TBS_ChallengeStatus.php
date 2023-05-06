@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\TBS;
 
 use GDO\Core\GDT_Enum;
@@ -17,12 +18,12 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 
 	use WithGDO;
 
-	public const NOT_CHECKED = 'not_checked';
-	public const NOT_TRIED = 'not_tried';
-	public const IN_PROGRESS = 'in_progress';
-	public const WONT_FIX = 'wont_fix';
-	public const NEED_FILES = 'need_files';
-	public const WORKING = 'working';
+	final public const NOT_CHECKED = 'not_checked';
+	final public const NOT_TRIED = 'not_tried';
+	final public const IN_PROGRESS = 'in_progress';
+	final public const WONT_FIX = 'wont_fix';
+	final public const NEED_FILES = 'need_files';
+	final public const WORKING = 'working';
 
 	public static array $COLORS = [
 		self::NOT_CHECKED => '#666', # no auto checker. no exception for auto checker. initial
@@ -48,23 +49,25 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 			self::WONT_FIX,
 			self::WORKING);
 		$this->label('tbs_chall_status');
+		$this->emptyLabel('tbs_chall_status_unknown');
 		$this->notNull();
 		$this->initial(self::NOT_CHECKED);
 		$this->tooltip = GDT_Tooltip::make('chall_tooltip');
 		$this->editLink = GDT_Link::make('chall_edit_link');
 	}
 
-	public function displayVar(string $enumValue = null): string
+	public function displayVar(string $var = null): string
 	{
-		return $enumValue === null ? t($this->emptyLabel, $this->emptyLabelArgs) : t("tbs_tt_$enumValue");
+		return t("tbs_tt_{$var}");
 	}
 
 	public function renderCell(): string
 	{
 		# Build status tooltip icon.
-		$key = 'tbs_tt_' . $this->getVar();
+		$var = $this->getVar();
+		$key = "tbs_tt_{$var}";
 		$tt = $this->tooltip->tooltip($key)->render();
-		$color = self::$COLORS[$this->getVar()];
+		$color = self::$COLORS[$var];
 		$icon = sprintf('<div style="color: %s;">%s</div>', $color, $tt);
 
 		# If we can edit we return a link with icon as label.
@@ -80,9 +83,9 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 		return $icon;
 	}
 
-	public function getChallenge(): GDO_TBS_Challenge
+	public function getChallenge(): ?GDO_TBS_Challenge
 	{
-		return $this->gdo;
+		return $this->gdo ?: null;
 	}
 
 }

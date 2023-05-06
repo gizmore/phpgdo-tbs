@@ -72,7 +72,7 @@ final class GDO_TBS_ChallengeSolved extends GDO
 		{
 			$query->where('chall_category=' . quote($category));
 		}
-		$value = $query->exec()->fetchValue();
+		$value = $query->exec()->fetchVar();
 		return $value === null ? '0' : $value;
 	}
 
@@ -90,7 +90,7 @@ final class GDO_TBS_ChallengeSolved extends GDO
 			{
 				$query->where('chall_category=' . quote($category));
 			}
-			self::$cacheChallengeCount[$catID] = $query->exec()->fetchValue();
+			self::$cacheChallengeCount[$catID] = $query->exec()->fetchVar();
 		}
 		return self::$cacheChallengeCount[$catID];
 	}
@@ -103,7 +103,7 @@ final class GDO_TBS_ChallengeSolved extends GDO
 		{
 			$query->where('chall_category=' . quote($category));
 		}
-		$value = $query->exec()->fetchValue();
+		$value = $query->exec()->fetchVar();
 		return $value === null ? '0' : $value;
 	}
 
@@ -121,7 +121,7 @@ final class GDO_TBS_ChallengeSolved extends GDO
 			{
 				$query->where('chall_category=' . quote($category));
 			}
-			self::$cacheMaxPoints[$catID] = $query->exec()->fetchValue();
+			self::$cacheMaxPoints[$catID] = $query->exec()->fetchVar();
 		}
 		return self::$cacheMaxPoints[$catID];
 	}

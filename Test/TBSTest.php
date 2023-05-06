@@ -31,7 +31,7 @@ final class TBSTest extends TestCase
 
 	public function testUpdateQuery()
 	{
-		GDO_TBS_ChallengeSolvedCategory::table()->updateUsers();
+		GDO_TBS_ChallengeSolvedCategory::updateUsers();
 		assertTrue(true);
 	}
 

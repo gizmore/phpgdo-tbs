@@ -14,7 +14,7 @@ $mo = Module_TBS::instance();
 $countViews = GDO_Statistic::totalHits();
 $countChalls = GDO_TBS_Challenge::table()->getChallengeCount();
 $countUsers = GDO_User::table()->countWhere('user_type="member"');
-$countOnline = ViewOnline::make()->getQuery()->selectOnly('COUNT(*)')->exec()->fetchValue();
+$countOnline = ViewOnline::make()->getQuery()->selectOnly('COUNT(*)')->exec()->fetchVar();
 
 $views = t('tbs_top_views');
 $challs = t('tbs_top_challs');

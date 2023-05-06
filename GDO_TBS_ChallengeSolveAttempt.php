@@ -42,7 +42,7 @@ final class GDO_TBS_ChallengeSolveAttempt extends GDO
 		return self::table()->select('COUNT(*)')->
 		where("csa_user={$user->getID()}")->
 		where('csa_date >' . quote(self::getTimeCut()))->
-		exec()->fetchValue();
+		exec()->fetchVar();
 	}
 
 	private static function getTimeCut()

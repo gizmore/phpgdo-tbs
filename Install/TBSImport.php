@@ -790,7 +790,7 @@ final class TBSImport
 	private function markLatestPostAsMailed()
 	{
 		$postId = GDO_ForumPost::table()->select('MAX(post_id)')->
-		first()->exec()->fetchValue();
+		first()->exec()->fetchVar();
 		Module_Forum::instance()->
 		saveConfigVar('forum_mail_sent_for_post', $postId);
 	}
