@@ -17,27 +17,27 @@ use GDO\UI\GDT_Page;
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?=Website::displayTitle()?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="generator" content="GDO v<?=Module_Core::GDO_REVISION?>"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title><?=Website::displayTitle()?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="generator" content="GDO v<?=Module_Core::GDO_REVISION?>"/>
 	<?=Website::displayMeta()?>
 	<?=Website::displayLink()?>
 </head>
 <body>
 <div id="gdo-pagewrap">
-    <div class="gdo-body">
+	<div class="gdo-body">
 		<?=GDT_TBS_Sidebar::make()->render()?>
 		<?=GDT_TBS_TopBar::make()->render()?>
-        <div class="gdo-main">
+		<div class="gdo-main">
 			<?php
 			#$page->topBar()->render()
 			?>
 			<?=$page->topResponse()->render()?>
 			<?=$page->html?>
-        </div>
-    </div>
-    <div><?=$page->bottomBar()->render()?></div>
+		</div>
+	</div>
+	<div><?=$page->bottomBar()->render()?></div>
 </div>
 <?=GDT_Loading::make()->render()?>
 <?=Javascript::displayJavascripts()?>

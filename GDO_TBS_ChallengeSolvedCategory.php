@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
-use GDO\Core\GDO_Exception;
+use GDO\Core\GDO_DBException;
 use GDO\Core\GDO_Exception;
 use GDO\Core\GDT_Decimal;
 use GDO\Core\GDT_UInt;
@@ -24,11 +24,19 @@ use GDO\User\GDT_User;
 final class GDO_TBS_ChallengeSolvedCategory extends GDO
 {
 
+	/**
+	 * @throws GDO_Exception
+	 * @throws GDO_DBException
+	 */
 	public static function updateUsers(): void
 	{
 		self::updateUsersWithHugeQuery();
 	}
 
+	/**
+	 * @throws GDO_DBException
+	 * @throws GDO_Exception
+	 */
 	private static function updateUsersWithHugeQuery(): void
 	{
 		$users = GDO_User::table()->select('user_id')->exec();
@@ -39,7 +47,7 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 	}
 
 	/**
-	 * @throws GDO_Exception
+	 * @throws GDO_DBException
 	 * @throws GDO_Exception
 	 */
 	private static function updateUserWithHugeQuery(string $userid): void
@@ -71,13 +79,7 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 		$user->saveVar('user_level', self::get($user)->gdoVar('csc_points'));
 	}
 
-	/**
-	 * @TODO: Ugly code
-	 *
-	 * @param int $userid
-	 * @param int $categoryID
-	 */
-	private static function calcselect($userid, $category = null)
+	private static function calcselect(string $userid, string $category = null): string
 	{
 		$challTable = GDO_TBS_Challenge::table()->gdoTableName();
 		$solvedTable = GDO_TBS_ChallengeSolved::table()->gdoTableName();
@@ -102,6 +104,10 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 		return $row;
 	}
 
+	/**
+	 * @throws GDO_Exception
+	 * @throws GDO_DBException
+	 */
 	public static function updateUser(GDO_User $user): array
 	{
 		$row = self::get($user);

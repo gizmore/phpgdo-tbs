@@ -106,7 +106,6 @@ final class GDT_TBS_GroupmasterIcon extends GDT
 		{
 			$user->tempSet($key_points, $points);
 			$user->tempSet($key_max_points, $max);
-			$user->recache();
 		}
 
 		return $max > 0 ? $points / $max * 100.0 : 0.0;

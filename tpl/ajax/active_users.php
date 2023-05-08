@@ -28,5 +28,5 @@ foreach ($users as $user)
 ?>
 <div id="tbs-online-list">
 	<?=$onlineUsers?>
-    <div id="tbs-anonymous"><?=t('tbs_guestcount', [$guestcount])?></div>
+	<div id="tbs-anonymous"><?=t('tbs_guestcount', [$guestcount])?></div>
 </div>
