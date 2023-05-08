@@ -16,7 +16,7 @@ use GDO\User\GDT_User;
 final class ChallengeLists extends Method
 {
 
-	public function isGuestAllowed(): string { return false; }
+	public function isGuestAllowed(): bool { return false; }
 
 	public function getMethodTitle(): string { return t('link_tbs_challenges'); }
 

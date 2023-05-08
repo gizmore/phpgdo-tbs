@@ -28,7 +28,7 @@ final class ChallengeList extends MethodTable
 
 	public function isFiltered(): bool { return false; }
 
-	public function isGuestAllowed(): string { return false; }
+	public function isGuestAllowed(): bool { return false; }
 
 	public function getDefaultOrder(): ?string { return 'chall_order'; }
 

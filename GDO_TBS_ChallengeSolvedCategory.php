@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
-use GDO\Core\GDO_Error;
+use GDO\Core\GDO_Exception;
 use GDO\Core\GDO_Exception;
 use GDO\Core\GDT_Decimal;
 use GDO\Core\GDT_UInt;
@@ -40,7 +40,7 @@ final class GDO_TBS_ChallengeSolvedCategory extends GDO
 
 	/**
 	 * @throws GDO_Exception
-	 * @throws GDO_Error
+	 * @throws GDO_Exception
 	 */
 	private static function updateUserWithHugeQuery(string $userid): void
 	{

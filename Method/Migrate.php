@@ -91,7 +91,7 @@ final class Migrate extends MethodForm
 		return md5(sha1(GDO_SALT . $hash . GDO_SALT . $email . GDO_SALT . $auth . GDO_SALT));
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$form->text('tbs_migration_info');
 		$tu = GDT_User::make('tbs_user')->notNull()->label('tbs_username');

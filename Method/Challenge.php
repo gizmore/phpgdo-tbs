@@ -16,7 +16,7 @@ use GDO\TBS\GDT_TBS_Challenge;
 final class Challenge extends Method
 {
 
-	public function isGuestAllowed(): string { return false; }
+	public function isGuestAllowed(): bool { return false; }
 
 	public function gdoParameters(): array
 	{

@@ -85,7 +85,7 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 
 	public function getChallenge(): ?GDO_TBS_Challenge
 	{
-		return $this->gdo ?: null;
+		return isset($this->gdo) ? $this->gdo : null;
 	}
 
 }

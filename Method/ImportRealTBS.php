@@ -55,7 +55,7 @@ final class ImportRealTBS extends MethodForm
 		return parent::execute();
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$form->text('tbs_import_info');
 		$form->addFields(GDT_Checkbox::make('import_users')->initial('0'),
