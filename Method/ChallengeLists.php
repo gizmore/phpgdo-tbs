@@ -39,7 +39,7 @@ final class ChallengeLists extends Method
 		foreach (GDT_TBS_ChallengeCategory::$CATS as $category)
 		{
 			$list = ChallengeList::make();
-			$response->addField($list->execWithInputs(['category' => $category]));
+			$response->addField($list->execWithInputs(array_merge(['category' => $category], $_REQUEST)));
 		}
 
 		return $response;

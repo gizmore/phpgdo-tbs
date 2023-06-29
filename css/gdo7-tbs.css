@@ -879,3 +879,7 @@ ul.links p a {
 .gdt-form .gdt-captcha > div {
     display: contents;
 }
+
+.gdt-table-order a.selected i {
+    color: gold;
+}
