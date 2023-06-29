@@ -84,7 +84,7 @@ final class ChallengeList extends MethodTable
 		$all = GDO_TBS_Challenge::table()->allCached('chall_order');
 		$all = array_filter($all, function (GDO_TBS_Challenge $chall) use ($cat)
 		{
-			return $chall->getCategory() === $cat;
+			return strcasecmp($chall->getCategory(), $cat) === 0;
 		});
 		return new ArrayResult($all, GDO_TBS_Challenge::table());
 	}
@@ -97,7 +97,7 @@ final class ChallengeList extends MethodTable
 		$icon = GDT_TBS_GroupmasterIcon::make()->gdo($user)->category($category);
 
 		$table->titleRaw($icon->render() . ' ' .
-			t('tbs_table_challs', [$table->countItems(), $category]));
+			t('tbs_table_challs', [$table->countItems(), $category]), false);
 	}
 
 }

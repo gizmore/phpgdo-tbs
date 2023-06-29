@@ -18,6 +18,7 @@ use GDO\DB\Query;
 use GDO\Net\GDT_Url;
 use GDO\Register\GDO_UserActivation;
 use GDO\TBS\Install\InstallTBS;
+use GDO\TBS\Method\Welcome;
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Container;
@@ -51,7 +52,12 @@ final class Module_TBS extends GDO_Module
 		return true;
 	}
 
-	/**
+    public function defaultMethod(): Method
+    {
+        return Welcome::make();
+    }
+
+    /**
 	 * Indicate module provides the tbs theme.
 	 */
 	public function getTheme(): ?string
