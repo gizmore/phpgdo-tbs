@@ -62,6 +62,7 @@ final class GDT_TBS_ChallengeCategory extends GDT_Enum
 		return array_keys(self::$CATS);
 	}
 
-	public function defaultLabel(): self { return $this->label('category'); }
+	public function gdtDefaultLabel(): ?string
+    { return 'category'; }
 
 }

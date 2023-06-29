@@ -29,7 +29,8 @@ final class GDT_TBS_ChallTitle extends GDT_String
 		$this->creator = GDT_ProfileLink::make()->nickname();
 	}
 
-	public function defaultLabel(): self { return $this->label('name'); }
+	public function gdtDefaultLabel(): ?string
+    { return 'name'; }
 
 	public function renderCell(): string
 	{
