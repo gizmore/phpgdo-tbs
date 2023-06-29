@@ -47,9 +47,10 @@ final class Ranking extends MethodQueryTable
 
 	public function getQuery(): Query
 	{
-		return $this->gdoTable()->select()->
-		joinObject('csc_user')->
-		where('user_type="member"');
+        $subquery = "SELECT uset_var FROM gdo_usersetting WHERE uset_user=csc_user AND uset_name='country_of_origin'";
+		return $this->gdoTable()->select("*, ($subquery) AS country")->
+            joinObject('csc_user')->
+            where('user_type="member"');
 	}
 
 	public function gdoFetchAs(): GDO { return GDO_User::table(); }
@@ -61,7 +62,7 @@ final class Ranking extends MethodQueryTable
 		$from = GDT_PageMenu::getFromS($page, $ipp);
 		return [
 			GDT_TBS_Rank::make('rank')->startRank($from),
-			GDT_Virtual::make()->gdtType(GDT_Country::make('country'))->subquery("SELECT uset_value FROM gdo_usersettings WHERE uset_user=gdo_user.value AND uset_key='country'"),
+			GDT_Country::make('country')->withName(false),
 			GDT_ProfileLink::make('username')->nickname(),
 			GDT_Level::make('user_level')->label('solved'),
 			$this->groupmasterIcon(0),

@@ -38,10 +38,8 @@ final class GDT_TBS_GroupmasterIcon extends GDT
 
 	/**
 	 * Render category badge.
-	 *
-	 * @TODO The formula is wrong. On original TBS the badges are given differently.
 	 */
-	public function renderHTML(): string
+	public function renderCell(): string
 	{
 		$user = $this->getUser();
 		$module = Module_TBS::instance();
@@ -53,14 +51,18 @@ final class GDT_TBS_GroupmasterIcon extends GDT
 		{
 			$path = "groupmasters/{$catID}_all.gif";
 		}
-		elseif ($perc >= 50)
+		elseif ($perc >= 75)
 		{
 			$path = "groupmasters/{$catID}_neutral.gif";
 		}
-		else
+		elseif ($perc >= 50)
 		{
 			$path = "groupmasters/{$catID}_sad.gif";
 		}
+        else
+        {
+            return '';
+        }
 
 		$title = t($titlekey, [$user->renderUserName(), $perc, $this->category]);
 
