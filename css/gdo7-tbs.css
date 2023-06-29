@@ -495,7 +495,7 @@ img.gdo-captcha-img {
 }
 
 .gdt-form input[type=text], .gdt-form input[type=password], .gdt-form input[type=search],
-.gdt-form input[type=number], .gdt-form input[type=email], .gdt-form input[type=date],
+.gdt-form input[type=number], .gdt-form input[type=email], .gdt-form input[type=url], .gdt-form input[type=date],
 .gdt-form input[type=datetime], .gdt-form input[type=datetime-local],
 .easy-autocomplete input, .gdt-form select, .gdt-form textarea {
     border-color: #ccc;
@@ -874,4 +874,8 @@ ul.links p a {
 
 #tbs-anonymous {
     margin-top: 8px;
+}
+
+.gdt-form .gdt-captcha > div {
+    display: contents;
 }

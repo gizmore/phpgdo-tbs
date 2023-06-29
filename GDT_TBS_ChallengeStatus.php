@@ -49,7 +49,7 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 			self::WONT_FIX,
 			self::WORKING);
 		$this->label('tbs_chall_status');
-		$this->emptyLabel('tbs_chall_status_unknown');
+		$this->emptyLabel('tbs_tt_unknown');
 		$this->notNull();
 		$this->initial(self::NOT_CHECKED);
 		$this->tooltip = GDT_Tooltip::make('chall_tooltip');
@@ -63,29 +63,27 @@ final class GDT_TBS_ChallengeStatus extends GDT_Enum
 
 	public function renderCell(): string
 	{
-		# Build status tooltip icon.
-		$var = $this->getVar();
+    	# Build status tooltip icon.
+		$var = $this->var;
 		$key = "tbs_tt_{$var}";
-		$tt = $this->tooltip->tooltip($key)->render();
-		$color = self::$COLORS[$var];
-		$icon = sprintf('<div style="color: %s;">%s</div>', $color, $tt);
+        $color = self::$COLORS[$var];
+        $icon = $this->tooltip->tooltip($key)->iconColor($color)->render();
 
 		# If we can edit we return a link with icon as label.
 		if (GDO_User::current()->isStaff())
 		{
 			if ($challenge = $this->getChallenge())
 			{
-				return $this->editLink->href($challenge->hrefEdit())->labelRaw($icon)->render();
+				$icon .= $this->editLink->href($challenge->hrefEdit())->textRaw(t('btn_edit'))->iconNone()->render();
 			}
 		}
 
-		# Else just the icon.
 		return $icon;
 	}
 
 	public function getChallenge(): ?GDO_TBS_Challenge
 	{
-		return isset($this->gdo) ? $this->gdo : null;
+		return $this->gdo ?? null;
 	}
 
 }

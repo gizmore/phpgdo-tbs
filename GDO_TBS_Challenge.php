@@ -98,7 +98,7 @@ final class GDO_TBS_Challenge extends GDO
 			GDT_ForumBoard::make('chall_questions')->label('tbs_question_board'),
 			GDT_ForumBoard::make('chall_solutions')->label('tbs_solution_board'),
 
-			GDT_Virtual::make('chall_solver_count')->gdtType(GDT_Decimal::make()->tooltip('tbs_tt_chall_solver_count'))->subquery('SELECT COUNT(*) FROM gdo_tbs_challengesolved cs WHERE cs.cs_challenge=chall_id'),
+			GDT_Virtual::make('chall_solver_count')->gdtType(GDT_UInt::make()->tooltip('tbs_tt_chall_solver_count'))->subquery('SELECT COUNT(*) FROM gdo_tbs_challengesolved cs WHERE cs.cs_challenge=chall_id'),
 			GDT_TBS_ChallengeSolved::make('chall_solved'),
 
 			GDT_CreatedBy::make('chall_creator'),

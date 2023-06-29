@@ -106,6 +106,7 @@ Use !help to get more information.
 	'tbs_not_done' => 'Not Done',
 	'tbs_question_board' => 'Questions',
 	'tbs_solution_board' => 'Solutions',
+    'chall_solved' => 'Solved?',
 
 	## Challenge Category
 	'enum_JavaScript' => 'JavaScript',
@@ -124,12 +125,16 @@ Use !help to get more information.
 
 	## Challenge Status
 	'chall_status' => 'OK?',
-	'tbs_tt_not_checked' => 'No auto checker. No exception. Status unknown',
+    'tbs_tt_unknown' => 'Absolutely unknown status',
+    'tbs_tt_not_checked' => 'No auto checker. No exception. Status unknown',
 	'tbs_tt_not_tried' => 'Challenge has auto checker, but no success yet.',
 	'tbs_tt_in_progress' => 'We have to manually work at it. Challenge not working yet.',
 	'tbs_tt_wont_fix' => 'We cannot or won\'t fix this challenge. It will be lost.',
 	'tbs_tt_need_files' => 'We are aware that we need more files or resources for this challenge. Maybe you can help us out?',
 	'tbs_tt_working' => 'This challenge is working as expected.',
+
+    'tbs_help_challenge_t' => 'Challenge Status',
+    'tbs_help_challenge_tt' => 'The question mark indicates the status of the challenge for tbs.wechall.',
 
 	## Solving
 	'err_tbs_challenge' => 'This challenge is unknown.',

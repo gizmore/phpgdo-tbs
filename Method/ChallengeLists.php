@@ -5,6 +5,8 @@ use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
 use GDO\Core\Method;
 use GDO\TBS\GDT_TBS_ChallengeCategory;
+use GDO\UI\GDT_Accordeon;
+use GDO\UI\GDT_Panel;
 use GDO\User\GDT_User;
 
 /**
@@ -30,6 +32,9 @@ final class ChallengeLists extends Method
 	public function execute(): GDT
 	{
 		$response = GDT_Response::make();
+
+        $response->addField(GDT_Accordeon::makeWith(GDT_Panel::make()->text('tbs_help_challenge_tt'))->title('tbs_help_challenge_t'));
+
 
 		foreach (GDT_TBS_ChallengeCategory::$CATS as $category)
 		{
