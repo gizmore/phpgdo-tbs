@@ -125,7 +125,7 @@ final class Migrate extends MethodForm
 			default:
 				return
 					$this->error('err_tbs_wc_migrate', [html($response)])->
-					addField($this->renderPage());
+					addField($this->getForm());
 		}
 	}
 

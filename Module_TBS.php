@@ -126,12 +126,14 @@ final class Module_TBS extends GDO_Module
 	# #############
 	public function getConfig(): array
 	{
+        $key = @include(GDO_PATH . 'GDO/TBS/xauth_token.php');
+        $key = $key ?: 'you wanna know this key? :)';
 		return [
 			GDT_Duration::make('chall_solve_timeout')->initial('5m'),
 			GDT_UInt::make('chall_solve_attempts')->initial('5'),
 			GDT_Secret::make('chall_solver_user')->initial('gizmore3'),
 			GDT_Secret::make('chall_solver_pass')->initial('11111111'),
-			GDT_Secret::make('tbs_xauth_key')->initial('you wanna know this key? :)'),
+			GDT_Secret::make('tbs_xauth_key')->initial($key),
 		];
 	}
 

@@ -424,11 +424,11 @@ ul.pagination li.page-selected {
 
 .gdt-form .gdt-headline, .gdt-form .gdt-form-head, .gdt-form form textarea,
 .gdt-form .gdt-form-text, .gdt-form .gdt-form-actions, .gdt-form-inner > .gdt-panel,
-.gdt-form form .gdt-bar, .gdt-divider, .gdt-form form .gdt-paragraph,
+.gdt-form form .gdt-bar, .gdt-form .gdt-divider, .gdt-form form .gdt-paragraph,
 .gdt-form form .gdt-link, .form-span-columns, .gdt-form form > .gdt-container .gdt-container,
 .gdt-form form .gdo-tabs, .gdt-form form .gdt-form-error,
 .gdo-file-controls {
-    grid-column: 1/3;
+    grid-column: 1/4;
 }
 
 .gdt-form form .gdt-divider {
