@@ -68,7 +68,7 @@ final class InstallTBS
             'user_id' => '2',
             'user_type' => GDT_UserType::MEMBER,
             'user_name' => 'gizmore',
-            'user_level' => '65535',
+            'user_level' => '212',
         ])->softReplace();
         $password = require Module_TBS::instance()->filePath('Install/password.php');
         $gizmore->saveSettingVar('Login', 'password', BCrypt::create($password)->__toString());

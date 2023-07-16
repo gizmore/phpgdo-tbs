@@ -5,7 +5,6 @@ use Exception;
 use GDO\Core\Method\ClearCache;
 use GDO\Country\GDO_Country;
 use GDO\Country\Module_Country;
-use GDO\Crypto\BCrypt;
 use GDO\Date\Time;
 use GDO\DB\Database;
 use GDO\Forum\GDO_ForumBoard;
@@ -14,7 +13,6 @@ use GDO\Forum\GDO_ForumThread;
 use GDO\Forum\Method\Repair;
 use GDO\Forum\Module_Forum;
 use GDO\HTML\Module_HTML;
-use GDO\LinkUUp\Module_LinkUUp;
 use GDO\Mail\Module_Mail;
 use GDO\Register\Module_Register;
 use GDO\TBS\GDO_TBS_Challenge;
@@ -25,10 +23,10 @@ use GDO\TBS\Module_TBS;
 use GDO\UI\GDT_Error;
 use GDO\UI\GDT_Message;
 use GDO\UI\GDT_Page;
+use GDO\UI\Module_UI;
 use GDO\User\GDO_Permission;
 use GDO\User\GDO_User;
 use GDO\User\GDO_UserPermission;
-use GDO\User\GDT_UserType;
 use GDO\User\Module_User;
 use GDO\Util\CSV;
 use GDO\Util\FileUtil;
@@ -498,7 +496,7 @@ final class TBSImport
 	public function importForum()
 	{
 		# Fix decoder to purify for now
-		GDT_Message::$DECODER = [GDT_Message::class, 'ESCAPE']; # default purifier
+//		GDT_Message::$DECODER = [Decoder::class, 'purify']; # default purifier
 
 		$this->importForumRoots();
 		Module_Forum::instance()->saveConfigVar('forum_root', $this->boardMapped('13'));
@@ -715,24 +713,27 @@ final class TBSImport
 	private function convertThreadTitle(array $row)
 	{
 		$title = $row[self::CSV_FORUM_TOPIC_TITLE];
-		$title = preg_replace('# Pages:.*$#', '', $title);
+		$title = preg_replace('# Pages:.*$#', '', (string)$title);
 		return $title ? $title : 'No Title';
 	}
 
 	public function importForumPosts()
 	{
 		# Open CSV
-		$path = $this->getImportPath('forum_posts.csv');
-		$csv = new CSV($path);
+        GDT_Message::setDecoder('RAW');
+        Module_UI::instance()->saveConfigVar('default_editor', 'RAW');
 
-		# Iterate
-		$csv->eachLine(function ($row)
+        $path = $this->getImportPath('forum_posts.csv');
+        $csv = new CSV($path);
+
+        # Iterate
+        $csv->eachLine(function ($row)
 		{
 
 			$postID = $row[self::CSV_FORUM_POST_ID];
 
-			if (!($post = GDO_ForumPost::getById($postID)))
-			{
+//			if (!($post = GDO_ForumPost::getById($postID)))
+//			{
 				try
 				{
 					$post = GDO_ForumPost::blank([
@@ -742,7 +743,7 @@ final class TBSImport
 						'post_created' => Time::getDate($row[self::CSV_FORUM_POST_DATE]),
 						'post_creator' => $this->convertUsernameToID($row[self::CSV_FORUM_POST_AUTHOR]),
 					]);
-					$post->save();
+					$post->softReplace();
 				}
 				catch (Exception $ex)
 				{
@@ -750,7 +751,7 @@ final class TBSImport
 					GDT_Page::instance()->topResponse()->addField(GDT_Error::make()->textRaw("Forum post ID:{$postID} cannot find it's thread ID:{$tid}"));
 					return;
 				}
-			}
+//			}
 
 			if (@$row[self::CSV_FORUM_POST_EDITED])
 			{
@@ -773,8 +774,8 @@ final class TBSImport
 	 *
 	 * @return string
 	 */
-	private function purify($message)
-	{
+	private function purify($message): string
+    {
 		# Replace local images
 		$message = str_replace('/files/images/',
 			Module_TBS::instance()->wwwPath('images/'), $message);
@@ -788,7 +789,8 @@ final class TBSImport
 		$message = str_replace('-->', '--&gt;', $message);
 
 		# Purifier
-		return Module_HTML::instance()->purify($message);
+        $message = Module_HTML::instance()->purify($message);
+        return $message;
 	}
 
 	private function markLatestPostAsMailed()
@@ -869,7 +871,7 @@ final class TBSImport
 		//        $fileData = str_replace('<head>', "<head>\n<base target=\"_parent\">\n", $fileData);
 
 		# Remove chall meta (intro that is not needed anymore?)
-		$fileData = preg_replace('#<body([^>]*)>.*</table></td></tr></table></div>#s', '<body$1>', $fileData);
+		$fileData = preg_replace('#<body([^>]*)>.*</table></td></tr></table></div>#s', '<body$1>', (string)$fileData);
 
 		//         # Fix windows.location (JS challs) (BAD IDEA?)
 		//         $fileData = str_replace('window.location.href=', 'window.top.location.href=', $fileData);
