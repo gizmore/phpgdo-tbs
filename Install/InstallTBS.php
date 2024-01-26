@@ -2,6 +2,7 @@
 namespace GDO\TBS\Install;
 
 use GDO\Classic\Module_Classic;
+use GDO\Core\GDO_SEO_URL;
 use GDO\Core\Module_Core;
 use GDO\Crypto\BCrypt;
 use GDO\Favicon\Module_Favicon;
@@ -75,6 +76,8 @@ final class InstallTBS
         $gizmore->saveSettingVar('User', 'gender', 'male');
         GDO_UserPermission::grant($gizmore, 'admin');
         GDO_UserPermission::grant($gizmore, 'staff');
+
+        GDO_SEO_URL::addRoute('userdata.php', href('TBS', 'Userdata'));
 
     }
 
