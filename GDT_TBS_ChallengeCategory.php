@@ -2,6 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDT_Enum;
+use GDO\Core\GDT_EnumNoI18n;
 
 /**
  * A challenge category implemented as enum.
@@ -11,7 +12,7 @@ use GDO\Core\GDT_Enum;
  * @since 6.10
  * @author gizmore
  */
-final class GDT_TBS_ChallengeCategory extends GDT_Enum
+final class GDT_TBS_ChallengeCategory extends GDT_EnumNoI18n
 {
 
 	public static $CATS = [

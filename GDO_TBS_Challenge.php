@@ -2,6 +2,7 @@
 namespace GDO\TBS;
 
 use GDO\Core\GDO;
+use GDO\Core\GDO_Exception;
 use GDO\Core\GDT_AutoInc;
 use GDO\Core\GDT_CreatedAt;
 use GDO\Core\GDT_CreatedBy;
@@ -118,9 +119,10 @@ final class GDO_TBS_Challenge extends GDO
 
 	public function getPermissionID() { return $this->getPermission()->getID(); }
 
-	/**
-	 * @return GDO_Permission
-	 */
+    /**
+     * @return GDO_Permission
+     * @throws GDO_Exception
+     */
 	public function getPermission() { return GDO_Permission::findBy('perm_name', $this->getPermissionTitle()); }
 
 	public function getPermissionTitle() { return $this->displayCategory() . '_' . $this->getOrder() . '_' . preg_replace('#[^0-9A-Za-z]#', '_', $this->getTitle()); }
