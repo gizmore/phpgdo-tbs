@@ -45,7 +45,7 @@ final class Ranking extends MethodQueryTable
 		return GDO_TBS_ChallengeSolvedCategory::table();
 	}
 
-	public function getQuery(): Query
+	public function gdoQuery(): Query
 	{
         $subquery = "SELECT uset_var FROM gdo_usersetting WHERE uset_user=csc_user AND uset_name='country_of_origin'";
 		return $this->gdoTable()->select("*, ($subquery) AS country")->

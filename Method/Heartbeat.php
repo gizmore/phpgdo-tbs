@@ -70,7 +70,7 @@ final class Heartbeat extends MethodAjax
 
 	private function queryOnlineUsers()
 	{
-		$query = ViewOnline::make()->getQuery()->
+		$query = ViewOnline::make()->gdoQuery()->
 		uncached()->
 		selectOnly('user_id, user_type, user_name, user_guest_name, user_level');
 		$users = $query->exec()->fetchAllAssoc();

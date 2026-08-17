@@ -19,9 +19,9 @@ final class RecentAdditions extends MethodQueryTable
 		return GDO_TBS_Challenge::table();
 	}
 
-	public function getQuery(): Query
+	public function gdoQuery(): Query
 	{
-		return parent::getQuery()->order('chall_created DESC')->limit(10);
+		return parent::gdoQuery()->order('chall_created DESC')->limit(10);
 	}
 
 }
