@@ -28,7 +28,7 @@ Debug::init();
 Debug::enableErrorHandler();
 Debug::enableExceptionHandler();
 Debug::setDieOnError(GDO_ERROR_DIE);
-Debug::setMailOnError(GDO_ERROR_MAIL);
+Debug::setMailOnError(GDO_ERROR_MAILS);
 GDO_Session::instance();
 ?>
     <!DOCTYPE html>
